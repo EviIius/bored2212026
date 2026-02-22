@@ -1,0 +1,143 @@
+Jake Brulato
+
+
+jakebrulato@gmail.com
+704-657-0756
+Mooresville, NC, 28117
+https://www.linkedin.com/in/jake-brulato/
+https://github.com/EviIius
+
+
+
+------------------------
+Data Analyst
+
+
+------------------------
+Numbers and statistics can often be dry and impersonal, but behind every data point there are real people and real experiences. My goal is to showcase the meaningful ones.
+
+
+Education
+------------------------
+Bachelor of Science in Business Administration, Business Analytics
+University of North Carolina at Charlotte
+08/2019 - 06/2023
+GPA: 3.74
+Relevant Courses:
+- UNCC Chancellors List or Deans List every semester. Graduated 
+- Data and Information Management 
+- A study of and implementation of databases for business applications.  Exploration of basic concepts of design and the use of SQL to create and manipulate corporate databases. 
+- Business Analytics 
+- Focuses on building predictive analytics and understanding and applying a variety of machine learning models. 
+- Econometrics 
+- Econometric techniques, including simple and multiple least squares regression with problems and analyses. Mostly done with CSV's of data in R Studio. 
+
+
+Data Science and Business Analytics, MS
+University of North Carolina at Charlotte
+06/2023 - 05/2025
+GPA : 4.00
+Relevant Courses:
+- DSBA 6276 - Strategic Business Analytics 
+- Marketing application of business analytics and    business strategies, utilizing both critical thinking and statistical tools. Primarily uses R to create Statistical plots. 
+- DSBA 6201 - Business Intelligence and    Analytics 
+- Applying Business Intelligence using statistical methods such as Regression, Logit, Clustering, and Decision    trees to analyze raw data and gain key insights 
+- DSBA 5122 - Visual Analytics 
+- Evaluate and critique visualization designs, learn visualization techniques & theory, implement interactive data visualizations, and develop a substantial visualization portfolio. Primarily with Python and Tableau. 
+- DSBA 6156 - Machine Learning 
+- Design, modeling, programming, aggregation, creating large language models and Neural Networks 
+
+
+
+
+
+Personal Projects
+------------------------
+Case Study of Charlotte's Housing Areas
+03/2019 - 06/2020
+- A personal analysis of housing data within a 50 mile radius of Uptown Charlotte. 
+- Compared income to housing price ratio across a wide demographic to establish income versus prices study. 
+
+
+Multi-LLM Chatbot
+12/2024 - 06/2025
+- Created a front-end application supporting multiple different types of LLMs via APIs or hosted azure instances. 
+
+
+
+
+
+Skills
+------------------------
+-JavaScript
+-Tableau
+-PowerBI
+-SQL
+-Java
+-JavaScript
+-Python
+-R Studio
+-Microsoft Excel
+-HTML
+-SnowFlake
+-Microsoft Powerpoint
+-OCaml
+-Swift
+-Streamlit
+-SAS
+-AutoDesk CAD
+-CSS
+
+
+
+Work Experience
+------------------------
+Freight Fowarder
+ALG Worldwide Logistics
+01/2022 - 01/2023
+Charlotte, NC
+Logistics company in Charlotte that I spent time working part-time while balancing school work.
+Achievements/Tasks
+- Most cost-effective solution to maximize profits and ensure cost targets are met. Displayed with Tableau to supervisors. 
+- Analyze current market trends in the transportation industry to determine the most cost-effective solution with R and Python. 
+- This includes Ground, Expedited, Air, and Ocean transportation for Domestic and International shipments. Queried with SQL and DBMS. 
+
+
+
+Model Risk Management Extern - Decision Science & Artificial Intelligence
+Wells Fargo
+10/2024 - 06/2025
+Charlotte, NC
+8-month externship supporting MRM DSAI validators in testing and approving LLM, AI, and ML for various Lines of Business and creating AI Tools.
+Achievements/Tasks
+- Designed and implemented a centralized Model Hub to optimize prompt engineering, hyperparameter tuning, and training workflows. 
+- Evaluated risk rankings based on vendor models and internal criteria, strengthening governance and reducing model approval time. 
+- Recreated autonomous agents using open-source LLMs and researched long-term memory design, creating a scalable memory store architecture. 
+- Integrated error analysis and advanced prompting strategies (e.g., ReAct) to improve model consistency, traceability, and performance evaluation. 
+- Conducted QA reviews on model validation reports to ensure compliance, documentation integrity, and model governance standards. 
+x-t-c2-color: Shelley Rochester - Shelley.Rochester@wellsfargo.com
+
+
+Data Management Analyst
+Wells Fargo
+06/2025 - Present
+Charlotte, NC
+Achievements/Tasks
+- Documentation of High Risk Machine Learning Lineage & Generative AI workflows for enterprise-wide consistency. 
+- Creating proper automated reconcilations of data across the enterprise inventory to ensure proper information is available. 
+- Establishing a foothold to recreate a proper approved data source strategy by investigating all sorts of applications. 
+x-t-c2-color: Kevin Moody - https://www.linkedin.com/in/kevin-moody-cpa-11476319/
+
+
+
+
+
+Interests
+------------------------
+-Chess
+-Architecture
+-Coding
+-Video Editing
+
+
+

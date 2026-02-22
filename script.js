@@ -281,15 +281,15 @@ function initTerminal() {
     const commands = [
         {
             cmd: 'cat about.me',
-            output: ['Passionate developer who loves building beautiful, performant web apps.']
+            output: ['Data Analyst at Wells Fargo. M.S. Data Science from UNC Charlotte.']
         },
         {
             cmd: 'ls skills/',
-            output: ['React  TypeScript  Node.js  Python  Docker  AWS  Next.js  GraphQL']
+            output: ['Python  SQL  R  Tableau  PowerBI  JavaScript  ML  Snowflake']
         },
         {
             cmd: 'whoami',
-            output: ['A creative problem-solver & lifelong learner.']
+            output: ['Jake Brulato \u2014 turning data into stories that matter.']
         },
         {
             cmd: 'cat status.txt',
@@ -465,11 +465,11 @@ function initTypingEffect() {
     if (!element) return;
 
     const words = [
-        'Software Developer',
+        'Data Analyst',
+        'Machine Learning Enthusiast',
         'Problem Solver',
-        'Creative Thinker',
-        'Full Stack Engineer',
-        'UI/UX Enthusiast'
+        'Python Developer',
+        'Visualization Nerd'
     ];
 
     let wordIndex = 0;
@@ -674,7 +674,7 @@ function initCommandPalette() {
         } else if (action === 'download') {
             document.getElementById('resumeFab')?.click();
         } else if (action === 'email') {
-            window.location.href = 'mailto:your.email@example.com';
+            window.location.href = 'mailto:jakebrulato@gmail.com';
         }
     }
 
