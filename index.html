@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+?<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Cinematic Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <span class="preloader-bracket">{</span>
+                <span class="preloader-text">Portfolio</span>
+                <span class="preloader-bracket">}</span>
+            </div>
+            <div class="preloader-bar">
+                <div class="preloader-progress" id="preloaderProgress"></div>
+            </div>
+            <span class="preloader-percent" id="preloaderPercent">0%</span>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="customCursor">
         <div class="cursor-dot"></div>
@@ -33,6 +51,12 @@
                 <a href="#education" class="nav-link">Education</a>
                 <a href="#contact" class="nav-link nav-link--cta magnetic">Get in Touch</a>
             </div>
+            <div class="nav-right">
+                <!-- Ctrl+K hint -->
+                <button class="cmd-trigger" id="cmdTrigger" aria-label="Command palette">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <kbd>Ctrl K</kbd>
+                </button>
             <div class="nav-right">
                 <!-- Dark/Light Mode Toggle -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -59,6 +83,76 @@
             </div>
         </div>
     </nav>
+
+    <!-- Command Palette (Ctrl+K) -->
+    <div class="cmd-palette-overlay" id="cmdPaletteOverlay">
+        <div class="cmd-palette" id="cmdPalette">
+            <div class="cmd-palette-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" class="cmd-palette-input" id="cmdPaletteInput" placeholder="Type a command or search..." autocomplete="off">
+                <kbd class="cmd-palette-kbd">ESC</kbd>
+            </div>
+            <div class="cmd-palette-body" id="cmdPaletteBody">
+                <div class="cmd-palette-group">
+                    <span class="cmd-palette-group-label">Navigation</span>
+                    <button class="cmd-palette-item" data-action="navigate" data-target="#hero">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                        <span>Go to Home</span>
+                        <kbd>H</kbd>
+                    </button>
+                    <button class="cmd-palette-item" data-action="navigate" data-target="#about">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>Go to About</span>
+                    </button>
+                    <button class="cmd-palette-item" data-action="navigate" data-target="#experience">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        <span>Go to Experience</span>
+                    </button>
+                    <button class="cmd-palette-item" data-action="navigate" data-target="#skills">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <span>Go to Skills</span>
+                    </button>
+                    <button class="cmd-palette-item" data-action="navigate" data-target="#projects">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                        <span>Go to Projects</span>
+                    </button>
+                    <button class="cmd-palette-item" data-action="navigate" data-target="#education">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 0 3 3 6 3s6-3 6-3v-5"/></svg>
+                        <span>Go to Education</span>
+                    </button>
+                    <button class="cmd-palette-item" data-action="navigate" data-target="#contact">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span>Go to Contact</span>
+                    </button>
+                </div>
+                <div class="cmd-palette-group">
+                    <span class="cmd-palette-group-label">Actions</span>
+                    <button class="cmd-palette-item" data-action="theme">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/></svg>
+                        <span>Toggle Theme</span>
+                        <kbd>T</kbd>
+                    </button>
+                    <button class="cmd-palette-item" data-action="download">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Download Resume</span>
+                        <kbd>D</kbd>
+                    </button>
+                    <button class="cmd-palette-item" data-action="email">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span>Send Email</span>
+                    </button>
+                </div>
+            </div>
+            <div class="cmd-palette-footer">
+                <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> Navigate</span>
+                <span><kbd>Enter</kbd> Select</span>
+                <span><kbd>Esc</kbd> Close</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
@@ -159,12 +253,13 @@
                 <div class="bento-card bento-card--bio reveal">
                     <h3 class="bento-title">Who I Am</h3>
                     <p class="bento-text">
-                        I'm a dedicated professional with a passion for creating impactful work. 
-                        My approach combines analytical thinking with creative problem-solving, 
-                        delivering solutions that are both functional and aesthetically compelling.
+                        Hey there! I'm someone who genuinely loves building things for the web. 
+                        I care deeply about craft &#8212; the kind of work where every detail feels intentional, 
+                        every interaction feels natural, and the end result just <em>works</em>.
                     </p>
                     <p class="bento-text" style="margin-top: 0.75rem; opacity: 0.7;">
-                        I believe in continuous learning and staying at the forefront of industry trends.
+                        When I'm not coding, you'll probably find me exploring new tools, 
+                        reading about design systems, or making yet another side project I'll swear is "the one."
                     </p>
                 </div>
 
@@ -181,24 +276,30 @@
                     </div>
                 </div>
 
-                <!-- Stats Card (wide) -->
-                <div class="bento-card bento-card--stats reveal">
-                    <div class="bento-stats-row">
-                        <div class="stat">
-                            <span class="stat-number" data-count="5">0</span><span class="stat-suffix">+</span>
-                            <span class="stat-label">Years Experience</span>
+                <!-- Philosophy Card -->
+                <div class="bento-card bento-card--philosophy reveal">
+                    <h3 class="bento-title">My Approach</h3>
+                    <div class="bento-philosophy-items">
+                        <div class="bento-philosophy-item">
+                            <span class="bento-philosophy-icon">&#9889;</span>
+                            <div>
+                                <span class="bento-philosophy-heading">Ship fast, iterate faster</span>
+                                <span class="bento-philosophy-desc">I'd rather get real feedback than chase perfection in a vacuum.</span>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number" data-count="30">0</span><span class="stat-suffix">+</span>
-                            <span class="stat-label">Projects Completed</span>
+                        <div class="bento-philosophy-item">
+                            <span class="bento-philosophy-icon">&#10024;</span>
+                            <div>
+                                <span class="bento-philosophy-heading">Details matter</span>
+                                <span class="bento-philosophy-desc">The best products feel effortless because someone sweated the small stuff.</span>
+                            </div>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number" data-count="15">0</span><span class="stat-suffix">+</span>
-                            <span class="stat-label">Happy Clients</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number" data-count="99">0</span><span class="stat-suffix">%</span>
-                            <span class="stat-label">Coffee Consumed</span>
+                        <div class="bento-philosophy-item">
+                            <span class="bento-philosophy-icon">&#129309;</span>
+                            <div>
+                                <span class="bento-philosophy-heading">Build with people, not just for them</span>
+                                <span class="bento-philosophy-desc">Great work happens when everyone shares context and ownership.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -208,21 +309,21 @@
                     <h3 class="bento-title">Currently</h3>
                     <div class="bento-currently-items">
                         <div class="bento-currently-item">
-                            <span class="bento-currently-emoji">📖</span>
+                            <span class="bento-currently-emoji">&#128214;</span>
                             <div>
                                 <span class="bento-currently-label">Reading</span>
                                 <span class="bento-currently-value">Designing Data-Intensive Apps</span>
                             </div>
                         </div>
                         <div class="bento-currently-item">
-                            <span class="bento-currently-emoji">🎵</span>
+                            <span class="bento-currently-emoji">&#127911;</span>
                             <div>
                                 <span class="bento-currently-label">Listening to</span>
                                 <span class="bento-currently-value">Lo-fi Beats Playlist</span>
                             </div>
                         </div>
                         <div class="bento-currently-item">
-                            <span class="bento-currently-emoji">🔧</span>
+                            <span class="bento-currently-emoji">&#128736;</span>
                             <div>
                                 <span class="bento-currently-label">Building</span>
                                 <span class="bento-currently-value">This Portfolio!</span>
@@ -458,62 +559,62 @@
         <div class="marquee-wrapper">
             <div class="marquee-track marquee-track--forward">
                 <div class="marquee-content">
-                    <span class="marquee-item"><span class="marquee-icon">⚛️</span> React</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔷</span> TypeScript</span>
-                    <span class="marquee-item"><span class="marquee-icon">🟢</span> Node.js</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐍</span> Python</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐳</span> Docker</span>
-                    <span class="marquee-item"><span class="marquee-icon">☁️</span> AWS</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔺</span> Next.js</span>
-                    <span class="marquee-item"><span class="marquee-icon">🍃</span> MongoDB</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐘</span> PostgreSQL</span>
-                    <span class="marquee-item"><span class="marquee-icon">📊</span> GraphQL</span>
-                    <span class="marquee-item"><span class="marquee-icon">🎨</span> Figma</span>
-                    <span class="marquee-item"><span class="marquee-icon">🌊</span> Tailwind</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9883;&#65039;</span> React</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128311;</span> TypeScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128994;</span> Node.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128013;</span> Python</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128051;</span> Docker</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9729;&#65039;</span> AWS</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128314;</span> Next.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127811;</span> MongoDB</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128024;</span> PostgreSQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128202;</span> GraphQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127912;</span> Figma</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127754;</span> Tailwind</span>
                 </div>
                 <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item"><span class="marquee-icon">⚛️</span> React</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔷</span> TypeScript</span>
-                    <span class="marquee-item"><span class="marquee-icon">🟢</span> Node.js</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐍</span> Python</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐳</span> Docker</span>
-                    <span class="marquee-item"><span class="marquee-icon">☁️</span> AWS</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔺</span> Next.js</span>
-                    <span class="marquee-item"><span class="marquee-icon">🍃</span> MongoDB</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐘</span> PostgreSQL</span>
-                    <span class="marquee-item"><span class="marquee-icon">📊</span> GraphQL</span>
-                    <span class="marquee-item"><span class="marquee-icon">🎨</span> Figma</span>
-                    <span class="marquee-item"><span class="marquee-icon">🌊</span> Tailwind</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9883;&#65039;</span> React</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128311;</span> TypeScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128994;</span> Node.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128013;</span> Python</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128051;</span> Docker</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9729;&#65039;</span> AWS</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128314;</span> Next.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127811;</span> MongoDB</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128024;</span> PostgreSQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128202;</span> GraphQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127912;</span> Figma</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127754;</span> Tailwind</span>
                 </div>
             </div>
             <div class="marquee-track marquee-track--reverse">
                 <div class="marquee-content">
-                    <span class="marquee-item"><span class="marquee-icon">🔧</span> Git</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔴</span> Redis</span>
-                    <span class="marquee-item"><span class="marquee-icon">🏗️</span> Terraform</span>
-                    <span class="marquee-item"><span class="marquee-icon">☸️</span> Kubernetes</span>
-                    <span class="marquee-item"><span class="marquee-icon">🦕</span> Django</span>
-                    <span class="marquee-item"><span class="marquee-icon">🟡</span> JavaScript</span>
-                    <span class="marquee-item"><span class="marquee-icon">🅰️</span> Vue.js</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐧</span> Linux</span>
-                    <span class="marquee-item"><span class="marquee-icon">⚡</span> Express</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔒</span> Nginx</span>
-                    <span class="marquee-item"><span class="marquee-icon">🧪</span> Testing</span>
-                    <span class="marquee-item"><span class="marquee-icon">📐</span> UI/UX</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128295;</span> Git</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128308;</span> Redis</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127959;&#65039;</span> Terraform</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9784;&#65039;</span> Kubernetes</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#129429;</span> Django</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128993;</span> JavaScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127344;&#65039;</span> Vue.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128039;</span> Linux</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9889;</span> Express</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128274;</span> Nginx</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#129514;</span> Testing</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128208;</span> UI/UX</span>
                 </div>
                 <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item"><span class="marquee-icon">🔧</span> Git</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔴</span> Redis</span>
-                    <span class="marquee-item"><span class="marquee-icon">🏗️</span> Terraform</span>
-                    <span class="marquee-item"><span class="marquee-icon">☸️</span> Kubernetes</span>
-                    <span class="marquee-item"><span class="marquee-icon">🦕</span> Django</span>
-                    <span class="marquee-item"><span class="marquee-icon">🟡</span> JavaScript</span>
-                    <span class="marquee-item"><span class="marquee-icon">🅰️</span> Vue.js</span>
-                    <span class="marquee-item"><span class="marquee-icon">🐧</span> Linux</span>
-                    <span class="marquee-item"><span class="marquee-icon">⚡</span> Express</span>
-                    <span class="marquee-item"><span class="marquee-icon">🔒</span> Nginx</span>
-                    <span class="marquee-item"><span class="marquee-icon">🧪</span> Testing</span>
-                    <span class="marquee-item"><span class="marquee-icon">📐</span> UI/UX</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128295;</span> Git</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128308;</span> Redis</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127959;&#65039;</span> Terraform</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9784;&#65039;</span> Kubernetes</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#129429;</span> Django</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128993;</span> JavaScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#127344;&#65039;</span> Vue.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128039;</span> Linux</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#9889;</span> Express</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128274;</span> Nginx</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#129514;</span> Testing</span>
+                    <span class="marquee-item"><span class="marquee-icon">&#128208;</span> UI/UX</span>
                 </div>
             </div>
         </div>
@@ -527,7 +628,7 @@
                 <h2 class="section-title">Featured<br><span class="gradient-text">work</span></h2>
             </div>
             <div class="projects-grid">
-                <div class="project-card reveal">
+                <div class="project-card tilt-card reveal">
                     <div class="project-image">
                         <div class="project-placeholder">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -567,7 +668,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card tilt-card reveal">
                     <div class="project-image">
                         <div class="project-placeholder">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -607,7 +708,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card tilt-card reveal">
                     <div class="project-image">
                         <div class="project-placeholder">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -698,6 +799,81 @@
                         <p class="edu-school">Various Platforms</p>
                         <p class="edu-details">Regularly completing courses on emerging technologies, cloud architecture, and AI/ML.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Praise</span>
+                <h2 class="section-title">What people<br><span class="gradient-text">say about me</span></h2>
+            </div>
+            <div class="testimonials-carousel reveal">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                        </div>
+                        <p class="testimonial-quote">&ldquo;An exceptional developer who consistently delivers high-quality work. Their attention to detail and problem-solving abilities are outstanding.&rdquo;</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">JD</div>
+                            <div>
+                                <span class="testimonial-name">Jane Doe</span>
+                                <span class="testimonial-role">Engineering Manager, TechCorp</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                        </div>
+                        <p class="testimonial-quote">&ldquo;Working with them was a game-changer for our project. They brought creative solutions and a level of expertise that elevated our entire team.&rdquo;</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">AS</div>
+                            <div>
+                                <span class="testimonial-name">Alex Smith</span>
+                                <span class="testimonial-role">CTO, StartupXYZ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                        </div>
+                        <p class="testimonial-quote">&ldquo;One of the most talented developers I've had the pleasure of collaborating with. They combine technical skill with genuine passion for great user experiences.&rdquo;</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">MK</div>
+                            <div>
+                                <span class="testimonial-name">Morgan Kelly</span>
+                                <span class="testimonial-role">Lead Designer, DesignStudio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                        </div>
+                        <p class="testimonial-quote">&ldquo;Their code is clean, well-documented, and a joy to review. They have a rare ability to translate complex requirements into elegant solutions.&rdquo;</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">RP</div>
+                            <div>
+                                <span class="testimonial-name">Riley Park</span>
+                                <span class="testimonial-role">Senior Developer, BigCo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonials-nav">
+                    <button class="testimonials-btn" id="testimonialPrev" aria-label="Previous testimonial">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <div class="testimonials-dots" id="testimonialDots"></div>
+                    <button class="testimonials-btn" id="testimonialNext" aria-label="Next testimonial">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -812,6 +988,16 @@
         </div>
         <div class="footer-gradient"></div>
     </footer>
+
+    <!-- Download Resume FAB -->
+    <a href="#" class="resume-fab" id="resumeFab" title="Download Resume">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span class="resume-fab-label">Resume</span>
+    </a>
 
     <script src="script.js"></script>
 </body>

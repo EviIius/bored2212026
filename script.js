@@ -1,9 +1,12 @@
 /* ============================================
    MAIN SCRIPT
-   Modern Resume Website — All 6 Features
+   Modern Resume Website — All 14 Features
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+// Preloader runs first, then inits everything else
+initPreloader();
+
+function initAfterLoad() {
     initThemeToggle();
     initCustomCursor();
     initCursorGlow();
@@ -13,10 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
     initRevealAnimations();
     initTypingEffect();
     initTerminal();
-    initCountUp();
     initSmoothScroll();
     initLocalTime();
-});
+    initScrollProgress();
+    initCommandPalette();
+    initTiltCards();
+    initTextScramble();
+    initParallax();
+    initTestimonials();
+    initResumeFab();
+}
 
 /* ============================================
    1. THEME TOGGLE (Dark ↔ Light)
@@ -502,41 +511,7 @@ function initTypingEffect() {
 /* ============================================
    COUNT UP ANIMATION
    ============================================ */
-function initCountUp() {
-    const counters = document.querySelectorAll('.stat-number');
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000;
-                const start = 0;
-                const startTime = performance.now();
-
-                function updateCounter(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    
-                    // Ease out cubic
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    const current = Math.round(start + (target - start) * eased);
-                    
-                    counter.textContent = current;
-
-                    if (progress < 1) {
-                        requestAnimationFrame(updateCounter);
-                    }
-                }
-
-                requestAnimationFrame(updateCounter);
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => observer.observe(counter));
-}
 
 /* ============================================
    SMOOTH SCROLL
@@ -557,4 +532,414 @@ function initSmoothScroll() {
             }
         });
     });
+}
+
+/* ============================================
+   CINEMATIC PRELOADER
+   ============================================ */
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    const progress = document.getElementById('preloaderProgress');
+    const percent = document.getElementById('preloaderPercent');
+    if (!preloader) return;
+
+    let loaded = 0;
+    const target = 100;
+
+    function tick() {
+        // Accelerating progress simulation
+        const remaining = target - loaded;
+        const increment = Math.max(0.5, remaining * 0.08);
+        loaded = Math.min(target, loaded + increment);
+        
+        if (progress) progress.style.width = loaded + '%';
+        if (percent) percent.textContent = Math.round(loaded) + '%';
+
+        if (loaded < 99.5) {
+            requestAnimationFrame(tick);
+        } else {
+            // Complete
+            if (progress) progress.style.width = '100%';
+            if (percent) percent.textContent = '100%';
+            
+            setTimeout(() => {
+                preloader.classList.add('done');
+                document.body.style.overflow = '';
+                initAfterLoad();
+            }, 400);
+        }
+    }
+
+    // Lock scroll during preload
+    document.body.style.overflow = 'hidden';
+    
+    // Start after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(tick, 300);
+        });
+    } else {
+        setTimeout(tick, 300);
+    }
+}
+
+/* ============================================
+   SCROLL PROGRESS BAR
+   ============================================ */
+function initScrollProgress() {
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+
+    function update() {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+        bar.style.width = progress + '%';
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+}
+
+/* ============================================
+   COMMAND PALETTE (Ctrl+K)
+   ============================================ */
+function initCommandPalette() {
+    const overlay = document.getElementById('cmdPaletteOverlay');
+    const input = document.getElementById('cmdPaletteInput');
+    const body = document.getElementById('cmdPaletteBody');
+    const trigger = document.getElementById('cmdTrigger');
+    if (!overlay) return;
+
+    let activeIndex = -1;
+
+    function open() {
+        overlay.classList.add('active');
+        if (input) {
+            input.value = '';
+            input.focus();
+        }
+        filterItems('');
+        activeIndex = -1;
+    }
+
+    function close() {
+        overlay.classList.remove('active');
+        activeIndex = -1;
+    }
+
+    function getVisibleItems() {
+        return Array.from(overlay.querySelectorAll('.cmd-palette-item:not(.hidden)'));
+    }
+
+    function setActive(index) {
+        const items = getVisibleItems();
+        items.forEach(i => i.classList.remove('active'));
+        if (index >= 0 && index < items.length) {
+            activeIndex = index;
+            items[index].classList.add('active');
+            items[index].scrollIntoView({ block: 'nearest' });
+        }
+    }
+
+    function filterItems(query) {
+        const items = overlay.querySelectorAll('.cmd-palette-item');
+        const q = query.toLowerCase().trim();
+        items.forEach(item => {
+            const text = item.querySelector('span').textContent.toLowerCase();
+            item.classList.toggle('hidden', q.length > 0 && !text.includes(q));
+        });
+
+        // Hide empty groups
+        overlay.querySelectorAll('.cmd-palette-group').forEach(group => {
+            const visibleInGroup = group.querySelectorAll('.cmd-palette-item:not(.hidden)');
+            group.style.display = visibleInGroup.length === 0 ? 'none' : '';
+        });
+    }
+
+    function executeItem(item) {
+        const action = item.dataset.action;
+        close();
+
+        if (action === 'navigate') {
+            const target = document.querySelector(item.dataset.target);
+            if (target) {
+                const offset = 80;
+                window.scrollTo({
+                    top: target.getBoundingClientRect().top + window.scrollY - offset,
+                    behavior: 'smooth'
+                });
+            }
+        } else if (action === 'theme') {
+            document.getElementById('themeToggle')?.click();
+        } else if (action === 'download') {
+            document.getElementById('resumeFab')?.click();
+        } else if (action === 'email') {
+            window.location.href = 'mailto:your.email@example.com';
+        }
+    }
+
+    // Keyboard shortcut: Ctrl+K
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            overlay.classList.contains('active') ? close() : open();
+        }
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            close();
+        }
+    });
+
+    // Input filtering
+    if (input) {
+        input.addEventListener('input', () => {
+            filterItems(input.value);
+            activeIndex = -1;
+        });
+
+        input.addEventListener('keydown', (e) => {
+            const items = getVisibleItems();
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setActive(Math.min(activeIndex + 1, items.length - 1));
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                setActive(Math.max(activeIndex - 1, 0));
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (activeIndex >= 0 && items[activeIndex]) {
+                    executeItem(items[activeIndex]);
+                }
+            }
+        });
+    }
+
+    // Click on items
+    overlay.querySelectorAll('.cmd-palette-item').forEach(item => {
+        item.addEventListener('click', () => executeItem(item));
+    });
+
+    // Close on overlay click
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) close();
+    });
+
+    // Trigger button
+    if (trigger) {
+        trigger.addEventListener('click', open);
+    }
+}
+
+/* ============================================
+   3D TILT CARDS + SPOTLIGHT GLOW (Stripe)
+   ============================================ */
+function initTiltCards() {
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const cards = document.querySelectorAll('.tilt-card');
+    cards.forEach(card => {
+        // Create spotlight element
+        const spotlight = document.createElement('div');
+        spotlight.className = 'tilt-spotlight';
+        card.appendChild(spotlight);
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+            spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(var(--particle-color), 0.15) 0%, transparent 60%)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            card.style.transition = 'transform 0.5s var(--ease-out)';
+            spotlight.style.background = 'transparent';
+            setTimeout(() => { card.style.transition = ''; }, 500);
+        });
+    });
+}
+
+/* ============================================
+   TEXT SCRAMBLE EFFECT
+   ============================================ */
+function initTextScramble() {
+    const chars = '!<>-_\\/[]{}—=+*^?#_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const targets = document.querySelectorAll('.section-title');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.scrambled) {
+                entry.target.dataset.scrambled = 'true';
+                scrambleElement(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    targets.forEach(el => observer.observe(el));
+
+    function scrambleElement(el) {
+        // Get all text nodes (skip gradient-text spans — we want those too)
+        const textNodes = [];
+        function walk(node) {
+            if (node.nodeType === 3 && node.textContent.trim()) {
+                textNodes.push(node);
+            } else if (node.childNodes) {
+                node.childNodes.forEach(walk);
+            }
+        }
+        walk(el);
+
+        textNodes.forEach(node => {
+            const original = node.textContent;
+            const parent = node.parentNode;
+            
+            // Replace text node with span-wrapped characters
+            const wrapper = document.createElement('span');
+            wrapper.className = 'scramble-text';
+            
+            for (let i = 0; i < original.length; i++) {
+                const span = document.createElement('span');
+                span.className = 'scramble-char';
+                span.dataset.final = original[i];
+                if (original[i] === ' ') {
+                    span.innerHTML = '&nbsp;';
+                } else {
+                    span.textContent = chars[Math.floor(Math.random() * chars.length)];
+                    span.classList.add('scrambling');
+                }
+                wrapper.appendChild(span);
+            }
+            
+            parent.replaceChild(wrapper, node);
+
+            // Animate each character with stagger
+            const charSpans = wrapper.querySelectorAll('.scramble-char');
+            charSpans.forEach((span, i) => {
+                if (span.dataset.final === ' ') return;
+                
+                let iterations = 0;
+                const maxIterations = 3 + Math.floor(Math.random() * 4);
+                const delay = i * 30;
+
+                setTimeout(() => {
+                    const interval = setInterval(() => {
+                        if (iterations >= maxIterations) {
+                            span.textContent = span.dataset.final;
+                            span.classList.remove('scrambling');
+                            clearInterval(interval);
+                            return;
+                        }
+                        span.textContent = chars[Math.floor(Math.random() * chars.length)];
+                        iterations++;
+                    }, 50);
+                }, delay);
+            });
+        });
+    }
+}
+
+/* ============================================
+   PARALLAX DEPTH LAYERS
+   ============================================ */
+function initParallax() {
+    const orbs = document.querySelectorAll('.gradient-orb');
+    const grid = document.querySelector('.grid-overlay');
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    function updateParallax() {
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+        
+        if (scrollY < heroHeight * 1.5) {
+            // Parallax orbs at different speeds
+            orbs.forEach((orb, i) => {
+                const speed = 0.1 + (i * 0.05);
+                orb.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+
+            // Grid moves slowest
+            if (grid) {
+                grid.style.transform = `translateY(${scrollY * 0.03}px)`;
+            }
+        }
+    }
+
+    window.addEventListener('scroll', updateParallax, { passive: true });
+}
+
+/* ============================================
+   TESTIMONIALS CAROUSEL
+   ============================================ */
+function initTestimonials() {
+    const track = document.getElementById('testimonialsTrack');
+    const dotsContainer = document.getElementById('testimonialDots');
+    const prevBtn = document.getElementById('testimonialPrev');
+    const nextBtn = document.getElementById('testimonialNext');
+    if (!track || !dotsContainer) return;
+
+    const cards = track.querySelectorAll('.testimonial-card');
+    const total = cards.length;
+    let current = 0;
+    let autoplayTimer;
+
+    // Create dots
+    for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'testimonials-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    function goTo(index) {
+        current = ((index % total) + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        
+        dotsContainer.querySelectorAll('.testimonials-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === current);
+        });
+        resetAutoplay();
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    if (prevBtn) prevBtn.addEventListener('click', prev);
+    if (nextBtn) nextBtn.addEventListener('click', next);
+
+    // Autoplay
+    function resetAutoplay() {
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(next, 5000);
+    }
+    resetAutoplay();
+
+    // Pause on hover
+    track.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+    track.addEventListener('mouseleave', resetAutoplay);
+}
+
+/* ============================================
+   DOWNLOAD RESUME FAB
+   ============================================ */
+function initResumeFab() {
+    const fab = document.getElementById('resumeFab');
+    if (!fab) return;
+
+    function update() {
+        if (window.scrollY > 400) {
+            fab.classList.add('visible');
+        } else {
+            fab.classList.remove('visible');
+        }
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
 }
