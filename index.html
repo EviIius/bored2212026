@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cursor glow effect -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">{</span> Portfolio <span class="logo-bracket">}</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link nav-link--cta">Get in Touch</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#experience" class="mobile-link">Experience</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#education" class="mobile-link">Education</a>
+            <a href="#contact" class="mobile-link">Get in Touch</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="gradient-orb gradient-orb--1"></div>
+            <div class="gradient-orb gradient-orb--2"></div>
+            <div class="gradient-orb gradient-orb--3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-badge reveal">
+                <span class="status-dot"></span>
+                Available for opportunities
+            </div>
+            <h1 class="hero-title reveal">
+                <span class="hero-line">Hi, I'm</span>
+                <span class="hero-name gradient-text">Your Name</span>
+            </h1>
+            <p class="hero-subtitle reveal">
+                A passionate <span class="typed-text" id="typedText"></span><span class="typed-cursor">|</span>
+            </p>
+            <p class="hero-description reveal">
+                Crafting elegant solutions to complex problems. I bring ideas to life 
+                through clean code, thoughtful design, and relentless curiosity.
+            </p>
+            <div class="hero-actions reveal">
+                <a href="#contact" class="btn btn--primary">
+                    <span>Let's Talk</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#experience" class="btn btn--ghost">
+                    <span>View My Work</span>
+                </a>
+            </div>
+            <div class="hero-scroll reveal">
+                <div class="scroll-indicator">
+                    <div class="scroll-dot"></div>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">01 — About</span>
+                <h2 class="section-title">A little bit<br><span class="gradient-text">about me</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="image-frame">
+                        <div class="image-placeholder">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Your Photo</span>
+                        </div>
+                    </div>
+                    <div class="image-decoration"></div>
+                </div>
+                <div class="about-content">
+                    <p class="about-text reveal">
+                        I'm a dedicated professional with a passion for creating impactful work. 
+                        With a strong foundation in both technical and creative disciplines, I bring 
+                        a unique perspective to every project I undertake.
+                    </p>
+                    <p class="about-text reveal">
+                        My approach combines analytical thinking with creative problem-solving, 
+                        allowing me to deliver solutions that are both functional and aesthetically compelling.
+                        I believe in continuous learning and staying at the forefront of industry trends.
+                    </p>
+                    <div class="about-stats reveal">
+                        <div class="stat">
+                            <span class="stat-number" data-count="5">0</span><span class="stat-suffix">+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="30">0</span><span class="stat-suffix">+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="15">0</span><span class="stat-suffix">+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">02 — Experience</span>
+                <h2 class="section-title">Where I've<br><span class="gradient-text">worked</span></h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Senior Developer</h3>
+                                <p class="timeline-company">Company Name</p>
+                            </div>
+                            <span class="timeline-date">2023 — Present</span>
+                        </div>
+                        <p class="timeline-description">
+                            Led development of key product features, mentored junior developers, 
+                            and architected scalable solutions that improved performance by 40%.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Leadership</span>
+                            <span class="tag">Architecture</span>
+                            <span class="tag">Mentoring</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Full Stack Developer</h3>
+                                <p class="timeline-company">Previous Company</p>
+                            </div>
+                            <span class="timeline-date">2021 — 2023</span>
+                        </div>
+                        <p class="timeline-description">
+                            Built and maintained web applications serving 100K+ users. 
+                            Implemented CI/CD pipelines and improved test coverage to 90%.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Full Stack</span>
+                            <span class="tag">CI/CD</span>
+                            <span class="tag">Testing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-role">Junior Developer</h3>
+                                <p class="timeline-company">First Company</p>
+                            </div>
+                            <span class="timeline-date">2019 — 2021</span>
+                        </div>
+                        <p class="timeline-description">
+                            Developed responsive web interfaces and RESTful APIs. 
+                            Collaborated in agile teams to deliver projects on time and within scope.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Frontend</span>
+                            <span class="tag">APIs</span>
+                            <span class="tag">Agile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">03 — Skills</span>
+                <h2 class="section-title">My technical<br><span class="gradient-text">toolkit</span></h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Frontend</h3>
+                    <div class="skill-items">
+                        <span class="skill-pill">HTML5</span>
+                        <span class="skill-pill">CSS3</span>
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">TypeScript</span>
+                        <span class="skill-pill">React</span>
+                        <span class="skill-pill">Vue.js</span>
+                        <span class="skill-pill">Next.js</span>
+                        <span class="skill-pill">Tailwind CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category reveal">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Backend</h3>
+                    <div class="skill-items">
+                        <span class="skill-pill">Node.js</span>
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">Express</span>
+                        <span class="skill-pill">Django</span>
+                        <span class="skill-pill">PostgreSQL</span>
+                        <span class="skill-pill">MongoDB</span>
+                        <span class="skill-pill">Redis</span>
+                        <span class="skill-pill">GraphQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category reveal">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">DevOps & Tools</h3>
+                    <div class="skill-items">
+                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">AWS</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">CI/CD</span>
+                        <span class="skill-pill">Linux</span>
+                        <span class="skill-pill">Kubernetes</span>
+                        <span class="skill-pill">Terraform</span>
+                        <span class="skill-pill">Nginx</span>
+                    </div>
+                </div>
+
+                <div class="skill-category reveal">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title">Other</h3>
+                    <div class="skill-items">
+                        <span class="skill-pill">Figma</span>
+                        <span class="skill-pill">UI/UX Design</span>
+                        <span class="skill-pill">Agile/Scrum</span>
+                        <span class="skill-pill">REST APIs</span>
+                        <span class="skill-pill">Testing</span>
+                        <span class="skill-pill">Performance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">04 — Projects</span>
+                <h2 class="section-title">Featured<br><span class="gradient-text">work</span></h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
+                        </div>
+                        <h3 class="project-title">Project One</h3>
+                        <p class="project-description">
+                            A full-stack web application that revolutionizes how users interact with data.
+                            Features real-time updates, collaborative editing, and smart analytics.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">TensorFlow</span>
+                            <span class="project-tag">AWS</span>
+                        </div>
+                        <h3 class="project-title">Project Two</h3>
+                        <p class="project-description">
+                            An AI-powered platform that automates complex workflows. 
+                            Leverages machine learning to provide intelligent recommendations.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag">Next.js</span>
+                            <span class="project-tag">TypeScript</span>
+                            <span class="project-tag">Prisma</span>
+                        </div>
+                        <h3 class="project-title">Project Three</h3>
+                        <p class="project-description">
+                            A secure, scalable SaaS platform built with modern technologies. 
+                            Features role-based access, real-time notifications, and a beautiful dashboard.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education" id="education">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">05 — Education</span>
+                <h2 class="section-title">Academic<br><span class="gradient-text">background</span></h2>
+            </div>
+            <div class="education-grid">
+                <div class="edu-card reveal">
+                    <div class="edu-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c0 0 3 3 6 3s6-3 6-3v-5"/>
+                        </svg>
+                    </div>
+                    <div class="edu-content">
+                        <span class="edu-date">2015 — 2019</span>
+                        <h3 class="edu-degree">Bachelor of Science</h3>
+                        <p class="edu-school">University Name</p>
+                        <p class="edu-details">Major in Computer Science. GPA: 3.8/4.0. Dean's List all semesters.</p>
+                    </div>
+                </div>
+
+                <div class="edu-card reveal">
+                    <div class="edu-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                    </div>
+                    <div class="edu-content">
+                        <span class="edu-date">2020</span>
+                        <h3 class="edu-degree">Professional Certification</h3>
+                        <p class="edu-school">Certification Authority</p>
+                        <p class="edu-details">Advanced course covering modern development practices, architecture, and best practices.</p>
+                    </div>
+                </div>
+
+                <div class="edu-card reveal">
+                    <div class="edu-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <div class="edu-content">
+                        <span class="edu-date">Ongoing</span>
+                        <h3 class="edu-degree">Continuous Learning</h3>
+                        <p class="edu-school">Various Platforms</p>
+                        <p class="edu-details">Regularly completing courses on emerging technologies, cloud architecture, and AI/ML.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">06 — Contact</span>
+                <h2 class="section-title">Let's build<br><span class="gradient-text">something great</span></h2>
+            </div>
+            <div class="contact-content">
+                <p class="contact-text reveal">
+                    I'm always excited to connect with fellow professionals, discuss new opportunities, 
+                    or collaborate on interesting projects. Don't hesitate to reach out!
+                </p>
+                <div class="contact-grid reveal">
+                    <a href="mailto:your.email@example.com" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">your.email@example.com</span>
+                        </div>
+                    </a>
+
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">linkedin.com/in/yourprofile</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/yourprofile" target="_blank" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">github.com/yourprofile</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="contact-label">Location</span>
+                            <span class="contact-value">City, Country</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact-cta reveal">
+                    <a href="mailto:your.email@example.com" class="btn btn--primary btn--large">
+                        <span>Send Me a Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <span class="footer-logo">
+                    <span class="logo-bracket">{</span> Portfolio <span class="logo-bracket">}</span>
+                </span>
+                <p class="footer-copy">&copy; 2026 Your Name. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/yourprofile" target="_blank" class="footer-social" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="footer-social" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="mailto:your.email@example.com" class="footer-social" aria-label="Email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-gradient"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
