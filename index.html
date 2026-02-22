@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
     <!-- Cursor glow effect -->
     <div class="cursor-glow" id="cursorGlow"></div>
 
@@ -25,13 +31,32 @@
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#education" class="nav-link">Education</a>
-                <a href="#contact" class="nav-link nav-link--cta">Get in Touch</a>
+                <a href="#contact" class="nav-link nav-link--cta magnetic">Get in Touch</a>
             </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="nav-right">
+                <!-- Dark/Light Mode Toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -50,6 +75,7 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-bg">
+            <canvas id="particleCanvas"></canvas>
             <div class="gradient-orb gradient-orb--1"></div>
             <div class="gradient-orb gradient-orb--2"></div>
             <div class="gradient-orb gradient-orb--3"></div>
@@ -67,18 +93,37 @@
             <p class="hero-subtitle reveal">
                 A passionate <span class="typed-text" id="typedText"></span><span class="typed-cursor">|</span>
             </p>
-            <p class="hero-description reveal">
-                Crafting elegant solutions to complex problems. I bring ideas to life 
-                through clean code, thoughtful design, and relentless curiosity.
-            </p>
+
+            <!-- Interactive Terminal -->
+            <div class="terminal reveal" id="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="terminal-dot terminal-dot--red"></span>
+                        <span class="terminal-dot terminal-dot--yellow"></span>
+                        <span class="terminal-dot terminal-dot--green"></span>
+                    </div>
+                    <span class="terminal-title">~/portfolio</span>
+                    <div class="terminal-dots" style="visibility:hidden">
+                        <span class="terminal-dot"></span>
+                    </div>
+                </div>
+                <div class="terminal-body" id="terminalBody">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-command" id="terminalCmd"></span>
+                        <span class="terminal-blink">_</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="hero-actions reveal">
-                <a href="#contact" class="btn btn--primary">
+                <a href="#contact" class="btn btn--primary magnetic">
                     <span>Let's Talk</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </a>
-                <a href="#experience" class="btn btn--ghost">
+                <a href="#experience" class="btn btn--ghost magnetic">
                     <span>View My Work</span>
                 </a>
             </div>
@@ -91,38 +136,54 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section — Bento Grid Dashboard -->
     <section class="section about" id="about">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-tag">01 — About</span>
                 <h2 class="section-title">A little bit<br><span class="gradient-text">about me</span></h2>
             </div>
-            <div class="about-grid">
-                <div class="about-image reveal">
-                    <div class="image-frame">
-                        <div class="image-placeholder">
-                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            <span>Your Photo</span>
-                        </div>
+            <div class="bento-grid">
+                <!-- Photo Card -->
+                <div class="bento-card bento-card--photo reveal">
+                    <div class="bento-photo-placeholder">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span>Your Photo</span>
                     </div>
-                    <div class="image-decoration"></div>
                 </div>
-                <div class="about-content">
-                    <p class="about-text reveal">
+
+                <!-- Bio Card -->
+                <div class="bento-card bento-card--bio reveal">
+                    <h3 class="bento-title">Who I Am</h3>
+                    <p class="bento-text">
                         I'm a dedicated professional with a passion for creating impactful work. 
-                        With a strong foundation in both technical and creative disciplines, I bring 
-                        a unique perspective to every project I undertake.
-                    </p>
-                    <p class="about-text reveal">
                         My approach combines analytical thinking with creative problem-solving, 
-                        allowing me to deliver solutions that are both functional and aesthetically compelling.
+                        delivering solutions that are both functional and aesthetically compelling.
+                    </p>
+                    <p class="bento-text" style="margin-top: 0.75rem; opacity: 0.7;">
                         I believe in continuous learning and staying at the forefront of industry trends.
                     </p>
-                    <div class="about-stats reveal">
+                </div>
+
+                <!-- Location Card -->
+                <div class="bento-card bento-card--location reveal">
+                    <div class="bento-location-bg"></div>
+                    <div class="bento-location-content">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span class="bento-location-city">City, Country</span>
+                        <span class="bento-location-tz">UTC+0 &middot; Local time <span id="localTime"></span></span>
+                    </div>
+                </div>
+
+                <!-- Stats Card (wide) -->
+                <div class="bento-card bento-card--stats reveal">
+                    <div class="bento-stats-row">
                         <div class="stat">
                             <span class="stat-number" data-count="5">0</span><span class="stat-suffix">+</span>
                             <span class="stat-label">Years Experience</span>
@@ -135,6 +196,80 @@
                             <span class="stat-number" data-count="15">0</span><span class="stat-suffix">+</span>
                             <span class="stat-label">Happy Clients</span>
                         </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="99">0</span><span class="stat-suffix">%</span>
+                            <span class="stat-label">Coffee Consumed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Currently Card -->
+                <div class="bento-card bento-card--currently reveal">
+                    <h3 class="bento-title">Currently</h3>
+                    <div class="bento-currently-items">
+                        <div class="bento-currently-item">
+                            <span class="bento-currently-emoji">📖</span>
+                            <div>
+                                <span class="bento-currently-label">Reading</span>
+                                <span class="bento-currently-value">Designing Data-Intensive Apps</span>
+                            </div>
+                        </div>
+                        <div class="bento-currently-item">
+                            <span class="bento-currently-emoji">🎵</span>
+                            <div>
+                                <span class="bento-currently-label">Listening to</span>
+                                <span class="bento-currently-value">Lo-fi Beats Playlist</span>
+                            </div>
+                        </div>
+                        <div class="bento-currently-item">
+                            <span class="bento-currently-emoji">🔧</span>
+                            <div>
+                                <span class="bento-currently-label">Building</span>
+                                <span class="bento-currently-value">This Portfolio!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interests Card -->
+                <div class="bento-card bento-card--interests reveal">
+                    <h3 class="bento-title">Interests</h3>
+                    <div class="bento-interests-pills">
+                        <span class="bento-pill">Open Source</span>
+                        <span class="bento-pill">AI / ML</span>
+                        <span class="bento-pill">Photography</span>
+                        <span class="bento-pill">Hiking</span>
+                        <span class="bento-pill">Coffee</span>
+                        <span class="bento-pill">Gaming</span>
+                        <span class="bento-pill">Music</span>
+                        <span class="bento-pill">Design</span>
+                    </div>
+                </div>
+
+                <!-- Quick Connect Card -->
+                <div class="bento-card bento-card--connect reveal">
+                    <h3 class="bento-title">Quick Connect</h3>
+                    <div class="bento-connect-links">
+                        <a href="https://github.com/yourprofile" target="_blank" class="bento-connect-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="bento-connect-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                        <a href="mailto:your.email@example.com" class="bento-connect-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            Email
+                        </a>
                     </div>
                 </div>
             </div>
@@ -310,6 +445,75 @@
                         <span class="skill-pill">Testing</span>
                         <span class="skill-pill">Performance</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Marquee -->
+    <section class="marquee-section">
+        <div class="marquee-label reveal">
+            <span class="section-tag">Tech I Love Working With</span>
+        </div>
+        <div class="marquee-wrapper">
+            <div class="marquee-track marquee-track--forward">
+                <div class="marquee-content">
+                    <span class="marquee-item"><span class="marquee-icon">⚛️</span> React</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔷</span> TypeScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">🟢</span> Node.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐍</span> Python</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐳</span> Docker</span>
+                    <span class="marquee-item"><span class="marquee-icon">☁️</span> AWS</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔺</span> Next.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">🍃</span> MongoDB</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐘</span> PostgreSQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">📊</span> GraphQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">🎨</span> Figma</span>
+                    <span class="marquee-item"><span class="marquee-icon">🌊</span> Tailwind</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span class="marquee-item"><span class="marquee-icon">⚛️</span> React</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔷</span> TypeScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">🟢</span> Node.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐍</span> Python</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐳</span> Docker</span>
+                    <span class="marquee-item"><span class="marquee-icon">☁️</span> AWS</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔺</span> Next.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">🍃</span> MongoDB</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐘</span> PostgreSQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">📊</span> GraphQL</span>
+                    <span class="marquee-item"><span class="marquee-icon">🎨</span> Figma</span>
+                    <span class="marquee-item"><span class="marquee-icon">🌊</span> Tailwind</span>
+                </div>
+            </div>
+            <div class="marquee-track marquee-track--reverse">
+                <div class="marquee-content">
+                    <span class="marquee-item"><span class="marquee-icon">🔧</span> Git</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔴</span> Redis</span>
+                    <span class="marquee-item"><span class="marquee-icon">🏗️</span> Terraform</span>
+                    <span class="marquee-item"><span class="marquee-icon">☸️</span> Kubernetes</span>
+                    <span class="marquee-item"><span class="marquee-icon">🦕</span> Django</span>
+                    <span class="marquee-item"><span class="marquee-icon">🟡</span> JavaScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">🅰️</span> Vue.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐧</span> Linux</span>
+                    <span class="marquee-item"><span class="marquee-icon">⚡</span> Express</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔒</span> Nginx</span>
+                    <span class="marquee-item"><span class="marquee-icon">🧪</span> Testing</span>
+                    <span class="marquee-item"><span class="marquee-icon">📐</span> UI/UX</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span class="marquee-item"><span class="marquee-icon">🔧</span> Git</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔴</span> Redis</span>
+                    <span class="marquee-item"><span class="marquee-icon">🏗️</span> Terraform</span>
+                    <span class="marquee-item"><span class="marquee-icon">☸️</span> Kubernetes</span>
+                    <span class="marquee-item"><span class="marquee-icon">🦕</span> Django</span>
+                    <span class="marquee-item"><span class="marquee-icon">🟡</span> JavaScript</span>
+                    <span class="marquee-item"><span class="marquee-icon">🅰️</span> Vue.js</span>
+                    <span class="marquee-item"><span class="marquee-icon">🐧</span> Linux</span>
+                    <span class="marquee-item"><span class="marquee-icon">⚡</span> Express</span>
+                    <span class="marquee-item"><span class="marquee-icon">🔒</span> Nginx</span>
+                    <span class="marquee-item"><span class="marquee-icon">🧪</span> Testing</span>
+                    <span class="marquee-item"><span class="marquee-icon">📐</span> UI/UX</span>
                 </div>
             </div>
         </div>
@@ -565,7 +769,7 @@
                     </a>
                 </div>
                 <div class="contact-cta reveal">
-                    <a href="mailto:your.email@example.com" class="btn btn--primary btn--large">
+                    <a href="mailto:your.email@example.com" class="btn btn--primary btn--large magnetic">
                         <span>Send Me a Message</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
