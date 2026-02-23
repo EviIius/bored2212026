@@ -23,7 +23,7 @@ function initAfterLoad() {
     initTiltCards();
     initTextScramble();
     initParallax();
-    initTestimonials();
+
     initResumeFab();
 }
 
@@ -54,45 +54,120 @@ function initThemeToggle() {
 }
 
 /* ============================================
-   2. CUSTOM CURSOR (Dot + Ring)
+   2. CUSTOM CURSOR — Crosshair
    ============================================ */
 function initCustomCursor() {
-    // Skip on touch devices
     if (window.matchMedia('(hover: none)').matches) return;
 
-    const dot = document.querySelector('.cursor-dot');
-    const ring = document.querySelector('.cursor-ring');
-    if (!dot || !ring) return;
+    const cursor = document.getElementById('cursorCrosshair');
+    const label = document.getElementById('crosshairLabel');
+    const canvas = document.getElementById('cursorTrail');
+    if (!cursor) return;
 
     let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
+    let curX = 0, curY = 0;
+    let angle = 0, targetAngle = 0;
+    let prevX = 0, prevY = 0;
+    let speed = 0;
+
+    // --- Trail ---
+    let ctx = null;
+    const trail = [];
+    const trailLength = 18;
+    if (canvas) {
+        ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+    }
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        dot.style.left = mouseX + 'px';
-        dot.style.top = mouseY + 'px';
+
+        // Calculate movement angle
+        const dx = mouseX - prevX;
+        const dy = mouseY - prevY;
+        speed = Math.sqrt(dx * dx + dy * dy);
+        if (speed > 2) {
+            targetAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+        }
+        prevX = mouseX;
+        prevY = mouseY;
+
+        // Push trail point
+        if (ctx) {
+            trail.push({ x: mouseX, y: mouseY, life: 1 });
+            if (trail.length > trailLength) trail.shift();
+        }
     });
 
-    function animateRing() {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        ring.style.left = ringX + 'px';
-        ring.style.top = ringY + 'px';
-        requestAnimationFrame(animateRing);
-    }
-    animateRing();
+    // Click feedback
+    document.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+    document.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
 
-    // Hover states on interactive elements
+    function animate() {
+        // Smooth follow
+        curX += (mouseX - curX) * 0.25;
+        curY += (mouseY - curY) * 0.25;
+
+        // Smooth angle interpolation
+        let angleDiff = targetAngle - angle;
+        if (angleDiff > 180) angleDiff -= 360;
+        if (angleDiff < -180) angleDiff += 360;
+        angle += angleDiff * 0.12;
+
+        cursor.style.transform = `translate(${curX}px, ${curY}px) rotate(${angle}deg)`;
+
+        // Draw trail
+        if (ctx) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (trail.length > 1) {
+                ctx.beginPath();
+                ctx.moveTo(trail[0].x, trail[0].y);
+                for (let i = 1; i < trail.length; i++) {
+                    trail[i].life -= 0.035;
+                    if (trail[i].life <= 0) { trail.splice(i, 1); i--; continue; }
+                    ctx.lineTo(trail[i].x, trail[i].y);
+                }
+                ctx.strokeStyle = 'rgba(139, 92, 246, 0.15)';
+                ctx.lineWidth = 1.5;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Context labels
+    function getCursorLabel(el) {
+        if (el.closest('a[href^="mailto:"]')) return 'email';
+        if (el.closest('a[href^="tel:"]')) return 'call';
+        if (el.closest('a[target="_blank"]')) return 'open';
+        if (el.closest('.project-card')) return 'view';
+        if (el.closest('.bento-card')) return '';
+        if (el.closest('.contact-card')) return 'connect';
+        if (el.closest('.btn')) return 'go';
+        if (el.closest('a')) return 'go';
+        if (el.closest('button')) return '';
+        return '';
+    }
+
+    // Hover states
     const hoverTargets = document.querySelectorAll('a, button, .btn, .magnetic, .project-card, .skill-pill, .bento-pill, .bento-card, .contact-card, input, textarea');
     hoverTargets.forEach(el => {
         el.addEventListener('mouseenter', () => {
-            dot.classList.add('hovering');
-            ring.classList.add('hovering');
+            cursor.classList.add('hovering');
+            if (label) label.textContent = getCursorLabel(el);
         });
         el.addEventListener('mouseleave', () => {
-            dot.classList.remove('hovering');
-            ring.classList.remove('hovering');
+            cursor.classList.remove('hovering');
+            if (label) label.textContent = '';
         });
     });
 }
@@ -874,56 +949,7 @@ function initParallax() {
     window.addEventListener('scroll', updateParallax, { passive: true });
 }
 
-/* ============================================
-   TESTIMONIALS CAROUSEL
-   ============================================ */
-function initTestimonials() {
-    const track = document.getElementById('testimonialsTrack');
-    const dotsContainer = document.getElementById('testimonialDots');
-    const prevBtn = document.getElementById('testimonialPrev');
-    const nextBtn = document.getElementById('testimonialNext');
-    if (!track || !dotsContainer) return;
 
-    const cards = track.querySelectorAll('.testimonial-card');
-    const total = cards.length;
-    let current = 0;
-    let autoplayTimer;
-
-    // Create dots
-    for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'testimonials-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-    }
-
-    function goTo(index) {
-        current = ((index % total) + total) % total;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        
-        dotsContainer.querySelectorAll('.testimonials-dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === current);
-        });
-        resetAutoplay();
-    }
-
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-
-    if (prevBtn) prevBtn.addEventListener('click', prev);
-    if (nextBtn) nextBtn.addEventListener('click', next);
-
-    // Autoplay
-    function resetAutoplay() {
-        clearInterval(autoplayTimer);
-        autoplayTimer = setInterval(next, 5000);
-    }
-    resetAutoplay();
-
-    // Pause on hover
-    track.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
-    track.addEventListener('mouseleave', resetAutoplay);
-}
 
 /* ============================================
    DOWNLOAD RESUME FAB

@@ -148,52 +148,93 @@ a, button, input, textarea, select {
 }
 
 /* ============================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR — Crosshair
    ============================================ */
-.custom-cursor {
-    pointer-events: none;
+.cursor-crosshair {
     position: fixed;
-    z-index: 99999;
     top: 0;
     left: 0;
-}
-
-.cursor-dot {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--accent-2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
     z-index: 99999;
     pointer-events: none;
+    will-change: transform;
 }
 
-.cursor-dot.hovering {
-    width: 4px;
-    height: 4px;
+.crosshair-line {
+    position: absolute;
+    background: rgba(167, 139, 250, 0.7);
+    border-radius: 1px;
+    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out),
+                opacity 0.3s ease, background 0.3s ease;
+}
+
+.crosshair-h {
+    width: 28px;
+    height: 1.5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.crosshair-v {
+    width: 1.5px;
+    height: 28px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Hover — lines spread out and brighten */
+.cursor-crosshair.hovering .crosshair-h {
+    width: 0px;
+    opacity: 0;
+}
+.cursor-crosshair.hovering .crosshair-v {
+    height: 0px;
+    opacity: 0;
+}
+
+/* Click — lines shrink */
+.cursor-crosshair.clicking .crosshair-h {
+    width: 14px;
+    background: white;
+}
+.cursor-crosshair.clicking .crosshair-v {
+    height: 14px;
     background: white;
 }
 
-.cursor-ring {
-    position: fixed;
-    width: 36px;
-    height: 36px;
-    border: 1.5px solid rgba(139, 92, 246, 0.5);
-    border-radius: 50%;
+/* Label */
+.crosshair-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), 
-                border-color 0.3s ease, background 0.3s ease;
-    z-index: 99998;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    white-space: nowrap;
     pointer-events: none;
+    text-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
 }
 
-.cursor-ring.hovering {
-    width: 56px;
-    height: 56px;
-    border-color: var(--accent-2);
-    background: rgba(139, 92, 246, 0.08);
+.cursor-crosshair.hovering .crosshair-label {
+    opacity: 1;
+}
+
+/* Cursor trail canvas */
+.cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99997;
 }
 
 /* ============================================
@@ -829,6 +870,7 @@ body:hover .cursor-glow {
 
 .section-header {
     margin-bottom: var(--space-4xl);
+    text-align: center;
 }
 
 .section-tag {
@@ -856,6 +898,8 @@ body:hover .cursor-glow {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     gap: var(--space-md);
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 .bento-card {
@@ -906,6 +950,17 @@ body:hover .cursor-glow {
     color: var(--text-tertiary);
     font-size: 0.85rem;
     background: var(--bg-tertiary);
+}
+
+.bento-initials {
+    font-size: 4.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -2px;
+    user-select: none;
 }
 
 /* Bio card */
@@ -975,9 +1030,16 @@ body:hover .cursor-glow {
 }
 
 .bento-philosophy-icon {
-    font-size: 1.3rem;
     flex-shrink: 0;
-    line-height: 1.4;
+    color: var(--accent-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(var(--particle-color), 0.08);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(var(--particle-color), 0.1);
 }
 
 .bento-philosophy-heading {
@@ -1014,9 +1076,16 @@ body:hover .cursor-glow {
 }
 
 .bento-currently-emoji {
-    font-size: 1.2rem;
     flex-shrink: 0;
-    line-height: 1.4;
+    color: var(--accent-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(var(--particle-color), 0.08);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(var(--particle-color), 0.1);
 }
 
 .bento-currently-label {
@@ -1177,6 +1246,8 @@ body:hover .cursor-glow {
 .timeline {
     position: relative;
     padding-left: 40px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .timeline::before {
@@ -1309,6 +1380,8 @@ body:hover .cursor-glow {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .skill-category {
@@ -1469,7 +1542,9 @@ body:hover .cursor-glow {
 }
 
 .marquee-icon {
-    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-3);
     line-height: 1;
 }
 
@@ -1478,8 +1553,10 @@ body:hover .cursor-glow {
    ============================================ */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .project-card {
@@ -1583,8 +1660,10 @@ body:hover .cursor-glow {
    ============================================ */
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .edu-card {
@@ -1657,6 +1736,7 @@ body:hover .cursor-glow {
    ============================================ */
 .contact-content {
     max-width: 800px;
+    margin: 0 auto;
 }
 
 .contact-text {
@@ -1664,6 +1744,7 @@ body:hover .cursor-glow {
     color: var(--text-secondary);
     line-height: 1.8;
     margin-bottom: var(--space-2xl);
+    text-align: center;
 }
 
 .contact-grid {
@@ -2207,141 +2288,7 @@ body::after {
     will-change: transform;
 }
 
-/* ============================================
-   7. TESTIMONIALS CAROUSEL
-   ============================================ */
-.testimonials-carousel {
-    max-width: 800px;
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-}
 
-.testimonials-track {
-    display: flex;
-    transition: transform 0.5s var(--ease-out);
-    width: 100%;
-}
-
-.testimonial-card {
-    min-width: 100%;
-    width: 100%;
-    padding: var(--space-2xl) var(--space-3xl);
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    flex-shrink: 0;
-    box-sizing: border-box;
-}
-
-.testimonial-stars {
-    display: flex;
-    gap: 2px;
-    margin-bottom: var(--space-lg);
-    color: #f59e0b;
-    font-size: 1.1rem;
-}
-
-.testimonial-quote {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: var(--space-xl);
-    font-style: italic;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-}
-
-.testimonial-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--gradient-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 0.85rem;
-    flex-shrink: 0;
-}
-
-.testimonial-name {
-    display: block;
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 0.95rem;
-}
-
-.testimonial-role {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--text-tertiary);
-    margin-top: 2px;
-}
-
-.testimonials-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
-}
-
-.testimonials-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all var(--duration-fast) ease;
-}
-
-.testimonials-btn:hover {
-    border-color: var(--border-hover);
-    color: var(--text-primary);
-    background: var(--bg-card-hover);
-}
-
-.testimonials-dots {
-    display: flex;
-    gap: 8px;
-}
-
-.testimonials-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border-hover);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-}
-
-.testimonials-dot.active {
-    background: var(--accent-2);
-    transform: scale(1.3);
-    box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
-}
-
-@media (max-width: 768px) {
-    .testimonial-card {
-        padding: var(--space-xl);
-    }
-    .testimonial-quote {
-        font-size: 1rem;
-    }
-}
 
 /* ============================================
    8. DOWNLOAD RESUME FAB

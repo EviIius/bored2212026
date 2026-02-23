@@ -1,4 +1,4 @@
-?<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
@@ -29,10 +29,14 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Custom Cursor -->
-    <div class="custom-cursor" id="customCursor">
-        <div class="cursor-dot"></div>
-        <div class="cursor-ring"></div>
+    <div class="cursor-crosshair" id="cursorCrosshair">
+        <div class="crosshair-line crosshair-h"></div>
+        <div class="crosshair-line crosshair-v"></div>
+        <span class="crosshair-label" id="crosshairLabel"></span>
     </div>
+
+    <!-- Cursor trail canvas -->
+    <canvas class="cursor-trail" id="cursorTrail"></canvas>
 
     <!-- Cursor glow effect -->
     <div class="cursor-glow" id="cursorGlow"></div>
@@ -57,7 +61,6 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     <kbd>Ctrl K</kbd>
                 </button>
-            <div class="nav-right">
                 <!-- Dark/Light Mode Toggle -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -241,11 +244,7 @@
                 <!-- Photo Card -->
                 <div class="bento-card bento-card--photo reveal">
                     <div class="bento-photo-placeholder">
-                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                        <span>Your Photo</span>
+                        <span class="bento-initials">JB</span>
                     </div>
                 </div>
 
@@ -281,21 +280,21 @@
                     <h3 class="bento-title">My Approach</h3>
                     <div class="bento-philosophy-items">
                         <div class="bento-philosophy-item">
-                            <span class="bento-philosophy-icon">&#128202;</span>
+                            <span class="bento-philosophy-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-6"/></svg></span>
                             <div>
                                 <span class="bento-philosophy-heading">Data tells a story</span>
                                 <span class="bento-philosophy-desc">Every dataset has a narrative &#8212; my job is to find it and make it resonate.</span>
                             </div>
                         </div>
                         <div class="bento-philosophy-item">
-                            <span class="bento-philosophy-icon">&#9889;</span>
+                            <span class="bento-philosophy-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
                             <div>
                                 <span class="bento-philosophy-heading">Automate the tedious</span>
                                 <span class="bento-philosophy-desc">If I'm doing it twice, I'm writing a script to do it forever.</span>
                             </div>
                         </div>
                         <div class="bento-philosophy-item">
-                            <span class="bento-philosophy-icon">&#129504;</span>
+                            <span class="bento-philosophy-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/><path d="M8 12a4 4 0 0 1 4-4"/></svg></span>
                             <div>
                                 <span class="bento-philosophy-heading">Stay curious</span>
                                 <span class="bento-philosophy-desc">From LLMs to logistics &#8212; the best insights come from looking where others don't.</span>
@@ -309,21 +308,21 @@
                     <h3 class="bento-title">Currently</h3>
                     <div class="bento-currently-items">
                         <div class="bento-currently-item">
-                            <span class="bento-currently-emoji">&#128188;</span>
+                            <span class="bento-currently-emoji"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
                             <div>
                                 <span class="bento-currently-label">Working at</span>
                                 <span class="bento-currently-value">Wells Fargo &#8212; Data Management</span>
                             </div>
                         </div>
                         <div class="bento-currently-item">
-                            <span class="bento-currently-emoji">&#127891;</span>
+                            <span class="bento-currently-emoji"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></span>
                             <div>
                                 <span class="bento-currently-label">Finishing</span>
                                 <span class="bento-currently-value">M.S. Data Science &#8212; UNCC</span>
                             </div>
                         </div>
                         <div class="bento-currently-item">
-                            <span class="bento-currently-emoji">&#128736;</span>
+                            <span class="bento-currently-emoji"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
                             <div>
                                 <span class="bento-currently-label">Building</span>
                                 <span class="bento-currently-value">Multi-LLM Chatbot App</span>
@@ -559,58 +558,58 @@
         <div class="marquee-wrapper">
             <div class="marquee-track marquee-track--forward">
                 <div class="marquee-content">
-                    <span class="marquee-item"><span class="marquee-icon">&#128013;</span> Python</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128202;</span> Tableau</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128993;</span> JavaScript</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#129504;</span> Machine Learning</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128190;</span> SQL</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128200;</span> Power BI</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128295;</span> R Studio</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#9889;</span> Streamlit</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#10052;&#65039;</span> Snowflake</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#9729;&#65039;</span> Azure</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128214;</span> SAS</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#9881;&#65039;</span> Java</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span> Python</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-6"/></svg></span> Tableau</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span> JavaScript</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span> Machine Learning</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span> SQL</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span> Power BI</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> R Studio</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> Streamlit</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7H2z"/><path d="M6 7V2h4v3"/><path d="M14 7V4h4v3"/></svg></span> Snowflake</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span> Azure</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> SAS</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> Java</span>
                 </div>
                 <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item"><span class="marquee-icon">&#128013;</span> Python</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128202;</span> Tableau</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128993;</span> JavaScript</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#129504;</span> Machine Learning</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128190;</span> SQL</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128200;</span> Power BI</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128295;</span> R Studio</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#9889;</span> Streamlit</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#10052;&#65039;</span> Snowflake</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#9729;&#65039;</span> Azure</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128214;</span> SAS</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#9881;&#65039;</span> Java</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span> Python</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-6"/></svg></span> Tableau</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span> JavaScript</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span> Machine Learning</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span> SQL</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span> Power BI</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> R Studio</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> Streamlit</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7H2z"/><path d="M6 7V2h4v3"/><path d="M14 7V4h4v3"/></svg></span> Snowflake</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span> Azure</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> SAS</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> Java</span>
                 </div>
             </div>
             <div class="marquee-track marquee-track--reverse">
                 <div class="marquee-content">
-                    <span class="marquee-item"><span class="marquee-icon">&#128187;</span> HTML / CSS</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#129302;</span> LLMs / GenAI</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128024;</span> Excel</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128039;</span> OCaml</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#127823;</span> Swift</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128295;</span> Git</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128209;</span> PowerPoint</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128208;</span> AutoDesk CAD</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128300;</span> Econometrics</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128202;</span> Neural Networks</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span> HTML / CSS</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span> LLMs / GenAI</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></span> Excel</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span> OCaml</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span> Swift</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span> Git</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span> PowerPoint</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg></span> AutoDesk CAD</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><circle cx="9" cy="13" r="2"/><circle cx="15" cy="9" r="2"/><line x1="10.5" y1="11.5" x2="13.5" y2="10.5"/></svg></span> Econometrics</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span> Neural Networks</span>
                 </div>
                 <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item"><span class="marquee-icon">&#128187;</span> HTML / CSS</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#129302;</span> LLMs / GenAI</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128024;</span> Excel</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128039;</span> OCaml</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#127823;</span> Swift</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128295;</span> Git</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128209;</span> PowerPoint</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128208;</span> AutoDesk CAD</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128300;</span> Econometrics</span>
-                    <span class="marquee-item"><span class="marquee-icon">&#128202;</span> Neural Networks</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span> HTML / CSS</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span> LLMs / GenAI</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></span> Excel</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span> OCaml</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span> Swift</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span> Git</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span> PowerPoint</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg></span> AutoDesk CAD</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><circle cx="9" cy="13" r="2"/><circle cx="15" cy="9" r="2"/><line x1="10.5" y1="11.5" x2="13.5" y2="10.5"/></svg></span> Econometrics</span>
+                    <span class="marquee-item"><span class="marquee-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span> Neural Networks</span>
                 </div>
             </div>
         </div>
@@ -731,80 +730,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="section testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">Praise</span>
-                <h2 class="section-title">What people<br><span class="gradient-text">say about me</span></h2>
-            </div>
-            <div class="testimonials-carousel reveal">
-                <div class="testimonials-track" id="testimonialsTrack">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="testimonial-quote">&ldquo;An exceptional developer who consistently delivers high-quality work. Their attention to detail and problem-solving abilities are outstanding.&rdquo;</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">JD</div>
-                            <div>
-                                <span class="testimonial-name">Jane Doe</span>
-                                <span class="testimonial-role">Engineering Manager, TechCorp</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="testimonial-quote">&ldquo;Working with them was a game-changer for our project. They brought creative solutions and a level of expertise that elevated our entire team.&rdquo;</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">AS</div>
-                            <div>
-                                <span class="testimonial-name">Alex Smith</span>
-                                <span class="testimonial-role">CTO, StartupXYZ</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="testimonial-quote">&ldquo;One of the most talented developers I've had the pleasure of collaborating with. They combine technical skill with genuine passion for great user experiences.&rdquo;</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">MK</div>
-                            <div>
-                                <span class="testimonial-name">Morgan Kelly</span>
-                                <span class="testimonial-role">Lead Designer, DesignStudio</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="testimonial-quote">&ldquo;Their code is clean, well-documented, and a joy to review. They have a rare ability to translate complex requirements into elegant solutions.&rdquo;</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">RP</div>
-                            <div>
-                                <span class="testimonial-name">Riley Park</span>
-                                <span class="testimonial-role">Senior Developer, BigCo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonials-nav">
-                    <button class="testimonials-btn" id="testimonialPrev" aria-label="Previous testimonial">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                    </button>
-                    <div class="testimonials-dots" id="testimonialDots"></div>
-                    <button class="testimonials-btn" id="testimonialNext" aria-label="Next testimonial">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Contact Section -->
     <section class="section contact" id="contact">
