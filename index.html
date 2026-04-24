@@ -6,269 +6,279 @@
     <title>Jake Brulato | Data Analyst & AI Governance</title>
     <meta
       name="description"
-      content="Portfolio for Jake Brulato, a data analyst focused on AI governance, model risk, analytics systems, and practical business intelligence."
+      content="Jake Brulato is a data analyst focused on AI governance, model risk, data lineage, business intelligence, and practical automation."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="progress" data-progress></div>
+    <div class="page-noise" aria-hidden="true"></div>
+    <div class="scroll-meter" data-progress></div>
 
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="Jake Brulato home">
         <span class="brand-mark">JB</span>
-        <span>Jake Brulato</span>
+        <span class="brand-text">Jake Brulato</span>
       </a>
       <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
         <span></span>
         <span></span>
       </button>
       <nav class="site-nav" data-nav>
-        <a href="#work">Work</a>
-        <a href="#systems">Systems</a>
+        <a href="#proof">Proof</a>
+        <a href="#lab">Lab</a>
         <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
+        <a href="#timeline">Timeline</a>
         <a href="#contact" class="nav-cta">Contact</a>
       </nav>
     </header>
 
+    <aside class="quick-dock" aria-label="Quick actions">
+      <a href="Jake's Resume (Novo).pdf" aria-label="Download resume">CV</a>
+      <a href="mailto:jakebrulato@gmail.com" aria-label="Email Jake">@</a>
+      <a href="https://github.com/EviIius" aria-label="GitHub">GH</a>
+    </aside>
+
     <main id="home">
       <section class="hero">
-        <img
-          class="hero-image"
-          src="assets/jake-data-hero.png"
-          alt="A cinematic analytics workstation with glowing dashboards and model lineage visuals."
-        />
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Data analyst / AI governance / business intelligence</p>
-          <h1>Turning complex data systems into decisions people can trust.</h1>
-          <p class="hero-copy">
-            I’m Jake Brulato, a Charlotte-based analyst working across model risk, data lineage, automation, dashboards,
-            and practical AI tools for regulated teams.
+        <div class="hero-copy">
+          <p class="eyebrow">Data analyst / AI governance / model risk systems</p>
+          <h1>
+            I turn messy systems into
+            <span class="serif">trusted signals.</span>
+          </h1>
+          <p>
+            I’m Jake Brulato, a Charlotte-based analyst building cleaner data lineage, AI governance workflows,
+            dashboards, and practical model evaluation tools for teams that need evidence, not vibes.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#projects">Explore projects</a>
-            <a class="button ghost" href="Jake's Resume (Novo).pdf">Download resume</a>
+            <a class="button primary" href="#lab">Tune the signal</a>
+            <a class="button secondary" href="#projects">See the work</a>
           </div>
         </div>
-        <aside class="signal-panel" aria-label="Portfolio highlights">
-          <div>
-            <span class="signal-value">MS</span>
-            <span class="signal-label">Data Science & Business Analytics</span>
+
+        <div class="hero-visual" aria-label="Interactive data portrait">
+          <div class="portrait-card">
+            <img src="assets/jake-data-hero.png" alt="Analytics workstation with model lineage dashboards." />
+            <div class="scanline"></div>
           </div>
-          <div>
-            <span class="signal-value">AI</span>
-            <span class="signal-label">Model risk and governance workflows</span>
+          <div class="floating-ticket ticket-a">
+            <span>current</span>
+            <strong>Data Management Analyst</strong>
           </div>
-          <div>
-            <span class="signal-value">BI</span>
-            <span class="signal-label">Tableau, Power BI, SQL, Python, R</span>
+          <div class="floating-ticket ticket-b">
+            <span>focus</span>
+            <strong>AI lineage + governance</strong>
           </div>
-        </aside>
+          <div class="radar-card">
+            <div class="radar-grid" aria-hidden="true">
+              <span style="--x: 64%; --y: 22%"></span>
+              <span style="--x: 35%; --y: 42%"></span>
+              <span style="--x: 78%; --y: 62%"></span>
+              <span style="--x: 46%; --y: 74%"></span>
+            </div>
+            <p>Evidence Map</p>
+          </div>
+        </div>
       </section>
 
-      <section class="ticker" aria-label="Core skills">
-        <div class="ticker-track">
+      <section class="signal-strip" aria-label="Core tools">
+        <div class="signal-track">
           <span>Python</span>
           <span>SQL</span>
           <span>Tableau</span>
           <span>Power BI</span>
           <span>R</span>
           <span>Snowflake</span>
-          <span>Machine Learning</span>
+          <span>Model Risk</span>
           <span>Data Lineage</span>
+          <span>Prompt Evaluation</span>
         </div>
       </section>
 
-      <section class="section intro-section" id="work">
-        <div class="section-label">Profile</div>
-        <div class="intro-grid">
-          <h2>Analytics with a human reason behind the metric.</h2>
-          <div class="intro-copy">
-            <p>
-              Numbers and statistics can become dry fast. My work starts from the opposite assumption: behind every data
-              point are people, processes, incentives, and decisions that deserve to be understood clearly.
-            </p>
-            <p>
-              I focus on building systems that make messy information usable, from high-risk machine learning lineage to
-              dashboards, validation workflows, and business-facing automation.
-            </p>
+      <section class="section proof-section" id="proof">
+        <div class="section-intro">
+          <span class="section-label">Proof Stack</span>
+          <h2>Not a resume page. A decision record.</h2>
+          <p>
+            Each module below shows a different kind of professional signal: technical range, governance maturity,
+            business translation, and curiosity that turns into shipped tools.
+          </p>
+        </div>
+        <div class="bento-grid">
+          <article class="bento-card wide plum">
+            <span class="card-kicker">AI Governance</span>
+            <h3>High-risk ML lineage and GenAI workflow documentation.</h3>
+            <p>Built for consistency across enterprise inventories and validation evidence.</p>
+          </article>
+          <article class="bento-card cool">
+            <span class="card-kicker">Education</span>
+            <strong>4.00</strong>
+            <p>MS Data Science and Business Analytics GPA at UNC Charlotte.</p>
+          </article>
+          <article class="bento-card jade">
+            <span class="card-kicker">BI Craft</span>
+            <h3>Dashboards that explain the why.</h3>
+            <p>Tableau, Power BI, SQL, R, Python, and visual analytics.</p>
+          </article>
+          <article class="bento-card tall ink">
+            <span class="card-kicker">Operating Belief</span>
+            <blockquote>
+              “Behind every data point are real people, real processes, and decisions worth making clearer.”
+            </blockquote>
+          </article>
+          <article class="bento-card persimmon">
+            <span class="card-kicker">Automation</span>
+            <h3>Reconciliations and source strategy.</h3>
+            <p>Reducing manual ambiguity across inventories and approved source investigations.</p>
+          </article>
+          <article class="bento-card wasabi">
+            <span class="card-kicker">Model Thinking</span>
+            <h3>Prompting, ReAct, autonomous agents, memory stores.</h3>
+            <p>Research and implementation support for practical AI tool evaluation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section lab-section" id="lab">
+        <div class="lab-copy">
+          <span class="section-label">Interactive Lab</span>
+          <h2>Build Jake’s best-fit project brief.</h2>
+          <p>
+            Move the sliders. The site recomposes the kind of work Jake is best positioned to do based on your needs.
+          </p>
+        </div>
+        <div class="lab-console">
+          <div class="dial-row">
+            <label for="governance">Governance weight</label>
+            <input id="governance" type="range" min="0" max="100" value="82" data-lab-input />
           </div>
-        </div>
-      </section>
-
-      <section class="section systems-section" id="systems">
-        <div class="section-heading">
-          <span class="section-label">Operating System</span>
-          <h2>How I approach analytical work.</h2>
-        </div>
-        <div class="systems-grid">
-          <article class="system-card">
-            <span>01</span>
-            <h3>Trace the source</h3>
-            <p>Document lineage, reconcile inventories, and clarify which data can actually be trusted for decisions.</p>
-          </article>
-          <article class="system-card">
-            <span>02</span>
-            <h3>Pressure-test the model</h3>
-            <p>Evaluate AI and ML behavior through governance, validation evidence, error analysis, and repeatable review paths.</p>
-          </article>
-          <article class="system-card">
-            <span>03</span>
-            <h3>Translate the signal</h3>
-            <p>Use dashboards, visual analytics, and concise narratives to turn complex findings into next actions.</p>
-          </article>
-          <article class="system-card accent">
-            <span>04</span>
-            <h3>Automate the boring parts</h3>
-            <p>Build tools that remove manual work while keeping auditability, clarity, and business context intact.</p>
-          </article>
+          <div class="dial-row">
+            <label for="visualization">Visualization depth</label>
+            <input id="visualization" type="range" min="0" max="100" value="64" data-lab-input />
+          </div>
+          <div class="dial-row">
+            <label for="automation">Automation urgency</label>
+            <input id="automation" type="range" min="0" max="100" value="71" data-lab-input />
+          </div>
+          <output class="lab-output" data-lab-output>
+            <span>AI Governance Dashboard Sprint</span>
+            <small>Lineage, validation evidence, risk indicators, and stakeholder-ready reporting.</small>
+          </output>
         </div>
       </section>
 
       <section class="section projects-section" id="projects">
-        <div class="section-heading">
-          <span class="section-label">Selected Projects</span>
-          <h2>Case studies from data, AI, and visualization.</h2>
+        <div class="section-intro">
+          <span class="section-label">Projects</span>
+          <h2>Selected work with expandable context.</h2>
         </div>
-        <div class="project-board">
-          <article class="project-card featured">
-            <div class="project-meta">
-              <span>AI Tools</span>
-              <span>2024-2025</span>
-            </div>
-            <h3>Multi-LLM Chatbot</h3>
-            <p>
-              Front-end application supporting multiple LLMs through APIs and hosted Azure instances, designed for
-              experimentation across model behavior, prompt strategies, and workflow support.
-            </p>
-            <button class="project-toggle" type="button" data-project-toggle>View impact</button>
-            <div class="project-detail">
-              Built around practical comparison: provider flexibility, prompt iteration, and cleaner handoffs between
-              experimentation and evaluation.
-            </div>
-          </article>
-          <article class="project-card">
-            <div class="project-meta">
-              <span>Analytics</span>
-              <span>Charlotte</span>
-            </div>
-            <h3>Housing Area Study</h3>
-            <p>
-              Analyzed housing data within a 50-mile radius of Uptown Charlotte, comparing income-to-housing-price ratios
-              across demographic and geographic segments.
-            </p>
-          </article>
-          <article class="project-card">
-            <div class="project-meta">
-              <span>Governance</span>
-              <span>Enterprise</span>
-            </div>
-            <h3>Model Hub Concept</h3>
-            <p>
-              Designed a centralized hub concept to streamline prompt engineering, hyperparameter tuning, and training
-              workflows for model review teams.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section experience-section" id="experience">
-        <div class="section-heading">
-          <span class="section-label">Experience</span>
-          <h2>Built in regulated, messy, real-world environments.</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item">
-            <span class="timeline-date">2025 - Present</span>
-            <div>
-              <h3>Data Management Analyst</h3>
-              <p class="company">Wells Fargo / Charlotte, NC</p>
+        <div class="project-stack">
+          <article class="project-row is-open">
+            <button class="project-head" type="button" data-accordion>
+              <span>01</span>
+              <strong>Multi-LLM Chatbot</strong>
+              <em>AI tools / 2024-2025</em>
+            </button>
+            <div class="project-body">
               <p>
-                Documenting high-risk machine learning lineage and generative AI workflows, improving enterprise inventory
-                consistency, and investigating approved data source strategy.
+                Created a front-end application supporting multiple LLMs through APIs and hosted Azure instances.
+                Useful for comparing provider behavior, prompt strategies, and practical model workflows.
               </p>
             </div>
           </article>
-          <article class="timeline-item">
-            <span class="timeline-date">2024 - 2025</span>
-            <div>
-              <h3>Model Risk Management Extern</h3>
-              <p class="company">Wells Fargo / Decision Science & Artificial Intelligence</p>
+          <article class="project-row">
+            <button class="project-head" type="button" data-accordion>
+              <span>02</span>
+              <strong>Charlotte Housing Area Study</strong>
+              <em>Analytics / visualization</em>
+            </button>
+            <div class="project-body">
               <p>
-                Supported validators reviewing LLM, AI, and ML models. Worked on Model Hub design, risk rankings, autonomous
-                agent research, long-term memory architecture, and model validation QA.
+                Compared income-to-housing-price ratios across a 50-mile radius of Uptown Charlotte to surface
+                geographic and demographic affordability patterns.
               </p>
             </div>
           </article>
-          <article class="timeline-item">
-            <span class="timeline-date">2022 - 2023</span>
-            <div>
-              <h3>Freight Forwarder</h3>
-              <p class="company">ALG Worldwide Logistics</p>
+          <article class="project-row">
+            <button class="project-head" type="button" data-accordion>
+              <span>03</span>
+              <strong>Model Hub Concept</strong>
+              <em>Governance / workflow design</em>
+            </button>
+            <div class="project-body">
               <p>
-                Analyzed market trends and transportation options across ground, expedited, air, ocean, domestic, and
-                international shipments using SQL, DBMS tools, R, Python, and Tableau.
+                Designed a centralized model workflow concept for prompt engineering, hyperparameter tuning,
+                training workflows, model review evidence, and clearer validator handoffs.
               </p>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="section credentials-section">
-        <div class="credential-panel">
-          <span class="section-label">Education</span>
-          <h2>UNC Charlotte foundation, analytics-forward.</h2>
-          <div class="credential-list">
-            <div>
-              <strong>MS, Data Science and Business Analytics</strong>
-              <span>University of North Carolina at Charlotte / GPA 4.00</span>
-            </div>
-            <div>
-              <strong>BSBA, Business Analytics</strong>
-              <span>University of North Carolina at Charlotte / GPA 3.74</span>
-            </div>
-          </div>
+      <section class="section timeline-section" id="timeline">
+        <div class="section-intro">
+          <span class="section-label">Timeline</span>
+          <h2>A career path through operations, analytics, and AI risk.</h2>
         </div>
-        <div class="skills-panel">
-          <span>JavaScript</span>
-          <span>Python</span>
-          <span>R Studio</span>
-          <span>SQL</span>
-          <span>Tableau</span>
-          <span>Power BI</span>
-          <span>Snowflake</span>
-          <span>Streamlit</span>
-          <span>SAS</span>
-          <span>Excel</span>
-          <span>HTML/CSS</span>
-          <span>Machine Learning</span>
+        <div class="timeline-map">
+          <article>
+            <time>2025 - Present</time>
+            <h3>Data Management Analyst</h3>
+            <p>Wells Fargo. High-risk ML lineage, GenAI workflow documentation, data reconciliation, and approved source strategy.</p>
+          </article>
+          <article>
+            <time>2024 - 2025</time>
+            <h3>Model Risk Management Extern</h3>
+            <p>Wells Fargo DSAI. LLM, AI, and ML validation support, model rankings, agent research, memory architecture, and QA review.</p>
+          </article>
+          <article>
+            <time>2023 - 2025</time>
+            <h3>MS, Data Science and Business Analytics</h3>
+            <p>UNC Charlotte. Machine learning, strategic analytics, visual analytics, business intelligence, and statistical modeling.</p>
+          </article>
+          <article>
+            <time>2022 - 2023</time>
+            <h3>Freight Forwarder</h3>
+            <p>ALG Worldwide Logistics. Cost analysis, transport trend research, SQL/DBMS querying, Tableau reporting, R, and Python.</p>
+          </article>
         </div>
       </section>
 
       <section class="section contact-section" id="contact">
         <div>
           <span class="section-label">Contact</span>
-          <h2>Let’s turn a fuzzy data problem into a working system.</h2>
+          <h2>Have a data system that needs a clearer story?</h2>
         </div>
-        <div class="contact-card">
-          <a href="mailto:jakebrulato@gmail.com">jakebrulato@gmail.com</a>
-          <a href="tel:+17046570756">704-657-0756</a>
-          <a href="https://www.linkedin.com/in/jake-brulato/">LinkedIn</a>
-          <a href="https://github.com/EviIius">GitHub</a>
+        <div class="contact-grid">
+          <a href="mailto:jakebrulato@gmail.com">
+            <span>Email</span>
+            <strong>jakebrulato@gmail.com</strong>
+          </a>
+          <a href="tel:+17046570756">
+            <span>Phone</span>
+            <strong>704-657-0756</strong>
+          </a>
+          <a href="https://www.linkedin.com/in/jake-brulato/">
+            <span>Network</span>
+            <strong>LinkedIn</strong>
+          </a>
+          <a href="https://github.com/EviIius">
+            <span>Code</span>
+            <strong>GitHub</strong>
+          </a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <span>Jake Brulato</span>
-      <span>Data, AI governance, and practical analytics.</span>
+      <span>Data analytics, AI governance, and decision systems.</span>
     </footer>
 
     <script src="script.js"></script>

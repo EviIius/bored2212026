@@ -1,15 +1,18 @@
 # Jake Brulato Portfolio
 
-A modern static portfolio for Jake Brulato, focused on data analytics, AI governance, model risk, business intelligence, and practical analytical systems.
+A modern static portfolio for Jake Brulato, focused on data analytics, AI governance, model risk, business intelligence, and practical analytical systems. The current direction treats the site as an interactive decision record rather than a conventional resume page.
 
 ## Highlights
 
-- Full-screen editorial hero with project-specific generated visual asset
+- Asymmetric editorial hero with floating evidence cards
 - Responsive navigation with mobile menu
+- Floating quick-action dock for resume, email, and GitHub
 - Scroll progress indicator
 - Skill ticker for analytics tooling
-- Profile, systems, projects, experience, education, and contact sections
-- Interactive project impact reveal
+- Bento proof stack using a high-contrast 2026-inspired palette
+- Interactive project-brief mixer for governance, visualization, and automation needs
+- Accordion project cards with expandable context
+- Timeline map for education and experience
 - No build step or framework required
 
 ## Tech Stack
