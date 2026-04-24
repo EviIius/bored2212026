@@ -1,11 +1,16 @@
+const body = document.body;
 const header = document.querySelector("[data-header]");
 const progress = document.querySelector("[data-progress]");
 const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
-const signalTrack = document.querySelector(".signal-track");
+const signalTrack = document.querySelector(".proof-track");
 const labInputs = document.querySelectorAll("[data-lab-input]");
 const labOutput = document.querySelector("[data-lab-output]");
-const accordions = document.querySelectorAll("[data-accordion]");
+const engineNodes = document.querySelectorAll("[data-engine-node]");
+const engineOutput = document.querySelector("[data-engine-output]");
+const spotlight = document.querySelector("[data-spotlight]");
+const loader = document.querySelector("[data-loader]");
+const magneticItems = document.querySelectorAll(".magnetic");
 
 const briefs = [
   {
@@ -40,7 +45,7 @@ const syncChrome = () => {
 };
 
 const closeNav = () => {
-  document.body.classList.remove("nav-open");
+  body.classList.remove("nav-open");
   nav.classList.remove("is-open");
   navToggle.setAttribute("aria-expanded", "false");
 };
@@ -56,14 +61,30 @@ const updateLab = () => {
   labOutput.innerHTML = `<span>${match.title}</span><small>${match.detail}</small>`;
 };
 
+body.classList.add("is-loading");
 syncChrome();
 updateLab();
 
+window.addEventListener("load", () => {
+  window.setTimeout(() => {
+    loader.classList.add("is-hidden");
+    body.classList.remove("is-loading");
+  }, 500);
+});
+
 window.addEventListener("scroll", syncChrome, { passive: true });
+
+window.addEventListener("pointermove", (event) => {
+  const x = `${event.clientX}px`;
+  const y = `${event.clientY}px`;
+
+  spotlight.style.setProperty("--mx", x);
+  spotlight.style.setProperty("--my", y);
+});
 
 navToggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
-  document.body.classList.toggle("nav-open", isOpen);
+  body.classList.toggle("nav-open", isOpen);
   navToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
@@ -79,15 +100,38 @@ if (signalTrack) {
 
 labInputs.forEach((input) => input.addEventListener("input", updateLab));
 
-accordions.forEach((button) => {
-  button.addEventListener("click", () => {
-    const row = button.closest(".project-row");
-    const isOpen = row.classList.contains("is-open");
+engineNodes.forEach((node) => {
+  node.addEventListener("click", () => {
+    engineNodes.forEach((item) => item.classList.remove("is-active"));
+    node.classList.add("is-active");
+    engineOutput.textContent = node.dataset.detail;
+  });
+});
 
-    document.querySelectorAll(".project-row").forEach((item) => item.classList.remove("is-open"));
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.18 }
+);
 
-    if (!isOpen) {
-      row.classList.add("is-open");
-    }
+document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+magneticItems.forEach((item) => {
+  item.addEventListener("pointermove", (event) => {
+    const rect = item.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+
+    item.style.transform = `translate(${x * 0.16}px, ${y * 0.16}px)`;
+  });
+
+  item.addEventListener("pointerleave", () => {
+    item.style.transform = "";
   });
 });
