@@ -15,6 +15,11 @@ const tiltItems = document.querySelectorAll("[data-tilt]");
 const skillButtons = document.querySelectorAll("[data-skill-filter]");
 const skillItems = document.querySelectorAll("[data-skill]");
 const countItems = document.querySelectorAll("[data-count]");
+const reactorStage = document.querySelector("[data-reactor-stage]");
+const reactorNodes = document.querySelectorAll("[data-reactor-node]");
+const reactorTitle = document.querySelector("[data-reactor-title]");
+const reactorCopy = document.querySelector("[data-reactor-copy]");
+const reactorMeter = document.querySelector("[data-reactor-meter]");
 const canvas = document.querySelector("#signalCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -40,6 +45,12 @@ const consoleModes = {
     title: "LLM tools with evaluation context",
     body: "Prototype prompt workflows, compare model behavior, and keep evidence close to experimentation."
   }
+};
+const reactorScores = {
+  "Lineage Pulse": "91%",
+  "Model Chamber": "88%",
+  "Visual Relay": "94%",
+  "Flow Loop": "86%"
 };
 
 let pointer = { x: 0, y: 0, active: false };
@@ -137,6 +148,26 @@ const countUp = (item) => {
   requestAnimationFrame(tick);
 };
 
+const createReactorBurst = (sparkCount = 18) => {
+  if (!reactorStage) return;
+
+  for (let index = 0; index < sparkCount; index += 1) {
+    const spark = document.createElement("span");
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 120 + Math.random() * 180;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    spark.className = "reactor-spark";
+    spark.style.setProperty("--spark-x", `${x}px`);
+    spark.style.setProperty("--spark-y", `${y}px`);
+    spark.style.setProperty("--spark-color", Math.random() > 0.5 ? "#00e5ff" : "#ff3df2");
+    reactorStage.appendChild(spark);
+
+    window.setTimeout(() => spark.remove(), 760);
+  }
+};
+
 body.classList.add("is-booting");
 syncChrome();
 setCanvasSize();
@@ -196,6 +227,21 @@ modeButtons.forEach((button) => {
     consoleOutput.innerHTML = `<span>${mode.label}</span><strong>${mode.title}</strong><p>${mode.body}</p>`;
   });
 });
+
+reactorNodes.forEach((button) => {
+  button.addEventListener("click", () => {
+    reactorNodes.forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+    reactorTitle.textContent = button.dataset.title;
+    reactorCopy.textContent = button.dataset.copy;
+    reactorMeter.textContent = reactorScores[button.dataset.title] || "89%";
+    createReactorBurst(24);
+  });
+});
+
+window.setInterval(() => {
+  if (document.visibilityState === "visible") createReactorBurst(8);
+}, 3400);
 
 const revealObserver = new IntersectionObserver(
   (entries) => {

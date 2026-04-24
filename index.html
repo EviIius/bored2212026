@@ -36,6 +36,7 @@
         <span></span>
       </button>
       <nav class="site-nav" data-nav>
+        <a href="#reactor">Reactor</a>
         <a href="#systems">Systems</a>
         <a href="#console">Console</a>
         <a href="#cases">Cases</a>
@@ -112,6 +113,47 @@
           <span>Model Risk</span>
           <span>Data Lineage</span>
           <span>Prompt Evaluation</span>
+        </div>
+      </section>
+
+      <section class="section reactor-section" id="reactor">
+        <div class="reactor-copy reveal">
+          <span class="section-label">Signal Reactor</span>
+          <h2>Drop a messy signal into the machine.</h2>
+          <p>
+            This is the eye-catcher: a live reactor for Jake's work. Pick the input pressure and watch the system
+            recompose the evidence path around lineage, validation, visualization, or automation.
+          </p>
+        </div>
+        <div class="reactor-stage reveal" data-reactor-stage>
+          <div class="reactor-grid" aria-hidden="true"></div>
+          <div class="reactor-ring ring-a" aria-hidden="true"></div>
+          <div class="reactor-ring ring-b" aria-hidden="true"></div>
+          <div class="reactor-ring ring-c" aria-hidden="true"></div>
+          <div class="reactor-beam beam-a" aria-hidden="true"></div>
+          <div class="reactor-beam beam-b" aria-hidden="true"></div>
+          <button class="reactor-node node-lineage is-active" type="button" data-reactor-node data-title="Lineage Pulse" data-copy="Trace source paths, ownership, inventory gaps, and approved-source risk before trust breaks downstream.">
+            Lineage
+          </button>
+          <button class="reactor-node node-model" type="button" data-reactor-node data-title="Model Chamber" data-copy="Bind prompts, risk rankings, validation notes, and QA evidence into reviewable model context.">
+            Model
+          </button>
+          <button class="reactor-node node-visual" type="button" data-reactor-node data-title="Visual Relay" data-copy="Transform analysis into dashboards and narratives that show what changed and what action follows.">
+            Visual
+          </button>
+          <button class="reactor-node node-flow" type="button" data-reactor-node data-title="Flow Loop" data-copy="Reduce repeated manual work with reconciliation patterns, exception checks, and handoff-ready workflows.">
+            Flow
+          </button>
+          <div class="reactor-core">
+            <span>Active Mode</span>
+            <strong data-reactor-title>Lineage Pulse</strong>
+            <small data-reactor-copy>Trace source paths, ownership, inventory gaps, and approved-source risk before trust breaks downstream.</small>
+          </div>
+          <div class="reactor-readouts">
+            <div><span>Signal</span><strong data-reactor-meter>91%</strong></div>
+            <div><span>Noise</span><strong>12%</strong></div>
+            <div><span>Trace</span><strong>Live</strong></div>
+          </div>
         </div>
       </section>
 

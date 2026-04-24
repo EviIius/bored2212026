@@ -5,6 +5,7 @@ A modern static portfolio for Jake Brulato, focused on data analytics, AI govern
 ## Highlights
 
 - Animated canvas signal field that reacts to pointer movement
+- Interactive Signal Reactor with rotating rings, scanning beams, and spark bursts
 - Neon black, cyan, pink, lime, and gold color system
 - Boot-screen intro animation
 - Rotating hero keyword
