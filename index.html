@@ -3,17 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jake Brulato | Data Analyst & AI Governance</title>
-    <meta
-      name="description"
-      content="Jake Brulato is a data analyst focused on AI governance, model risk, data lineage, business intelligence, and practical automation."
-    />
+    <title>Jake Brulato | Evidence Systems for Data & AI</title>
+    <meta name="description" content="Jake Brulato builds trusted data, AI governance, model risk, and business intelligence systems." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -21,10 +15,38 @@
     <div class="grain" aria-hidden="true"></div>
     <div class="scroll-meter" data-progress></div>
 
-    <div class="intro-loader" data-loader aria-hidden="true">
-      <span>Building evidence map</span>
+    <div class="loader" data-loader aria-hidden="true">
+      <span>Evidence system loading</span>
       <strong>JB</strong>
     </div>
+
+    <div class="privacy-panel" data-privacy>
+      <div>
+        <strong>Privacy Settings</strong>
+        <p>Jake's portfolio can remember preferences for motion and analytics-style interactions. Nothing here sells data.</p>
+      </div>
+      <button type="button" data-privacy-settings>Settings</button>
+      <button type="button" data-privacy-reject>Reject</button>
+      <button type="button" data-privacy-accept>Accept</button>
+    </div>
+
+    <dialog class="settings-modal" data-settings>
+      <form method="dialog">
+        <div class="modal-head">
+          <span>Consent Center</span>
+          <button type="submit" aria-label="Close settings">Close</button>
+        </div>
+        <label class="toggle-row">
+          <span><strong>Essential</strong><small>Required for navigation and core interface.</small></span>
+          <input type="checkbox" checked disabled />
+        </label>
+        <label class="toggle-row">
+          <span><strong>Interaction Memory</strong><small>Stores reduced-motion and preferred interaction settings locally.</small></span>
+          <input type="checkbox" data-consent-toggle />
+        </label>
+        <button class="modal-save" type="button" data-settings-save>Save Preferences</button>
+      </form>
+    </dialog>
 
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="Jake Brulato home">
@@ -36,11 +58,18 @@
         <span></span>
       </button>
       <nav class="site-nav" data-nav>
-        <a href="#friction">Friction</a>
-        <a href="#engine">Engine</a>
+        <a href="#manifesto">Manifesto</a>
+        <a href="#services">Services</a>
         <a href="#cases">Cases</a>
-        <a href="#lab">Lab</a>
-        <a href="#contact" class="nav-cta">Contact</a>
+        <a href="#engine">Engine</a>
+        <span class="nav-menu">
+          <button type="button">Resources</button>
+          <span>
+            <a href="#comparison">System Audit</a>
+            <a href="#proof">Proof Notes</a>
+          </span>
+        </span>
+        <a href="#contact" class="nav-cta">Talk to Jake</a>
       </nav>
     </header>
 
@@ -52,240 +81,191 @@
 
     <main id="home">
       <section class="hero">
-        <div class="hero-grid">
-          <div class="hero-copy reveal">
-            <p class="eyebrow">Data analyst / AI governance / model risk</p>
-            <h1>
-              Your data stack has a trust problem.
-              <span>Jake builds the proof layer.</span>
-            </h1>
-            <p>
-              I turn tangled lineage, model evidence, dashboards, and workflow gaps into systems that people can inspect,
-              explain, and actually use.
-            </p>
-            <div class="hero-actions">
-              <a class="button primary magnetic" href="#engine">Explore the engine</a>
-              <a class="button secondary magnetic" href="#cases">See proof</a>
-            </div>
-          </div>
-
-          <div class="hero-stage reveal" aria-label="Animated data evidence board">
-            <div class="image-slab">
-              <img src="assets/jake-data-hero.png" alt="Analytics workstation with model lineage dashboards." />
-              <span class="image-badge">Live Evidence Board</span>
-            </div>
-            <div class="signal-card signal-card-a">
-              <span>risk</span>
-              <strong>High-risk ML lineage</strong>
-            </div>
-            <div class="signal-card signal-card-b">
-              <span>toolkit</span>
-              <strong>Python / SQL / Tableau / Power BI</strong>
-            </div>
-            <div class="mini-terminal">
-              <span>$ reconcile --source inventory</span>
-              <span class="terminal-ok">status: 97% matched</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="proof-reel" aria-label="Portfolio proof points">
-          <div class="proof-track">
-            <span>MS Data Science & Business Analytics</span>
-            <span>Model Risk Management</span>
-            <span>AI Workflow Documentation</span>
-            <span>Multi-LLM Tooling</span>
-            <span>Charlotte Housing Analytics</span>
-            <span>Data Reconciliation</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section friction-section" id="friction">
-        <div class="section-lead reveal">
-          <span class="section-label">The Friction</span>
-          <h2>Data work breaks when trust is treated like a footnote.</h2>
-        </div>
-        <div class="friction-grid">
-          <article class="friction-card reveal">
-            <span>01</span>
-            <h3>Lineage is scattered</h3>
-            <p>People need confidence in where a metric, model input, or reporting field came from.</p>
-          </article>
-          <article class="friction-card reveal">
-            <span>02</span>
-            <h3>Models need evidence</h3>
-            <p>Validation depends on risk rankings, review paths, error analysis, and clean documentation.</p>
-          </article>
-          <article class="friction-card reveal">
-            <span>03</span>
-            <h3>Dashboards miss the story</h3>
-            <p>Visuals only matter when they make the next business decision easier to defend.</p>
-          </article>
-          <article class="friction-card reveal">
-            <span>04</span>
-            <h3>Manual reviews drift</h3>
-            <p>Reconciliation and source checks need repeatable workflows, not heroic spreadsheet archaeology.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section engine-section" id="engine">
-        <div class="engine-copy reveal">
-          <span class="section-label">The Evidence Engine</span>
-          <h2>A working system for making analytics defensible.</h2>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">AI governance / lineage / analytics systems</p>
+          <h1>Engineering trust for data teams moving beyond the known.</h1>
           <p>
-            Inspired by agency-style “engine” storytelling, this is the portfolio version: a connected loop of source
-            clarity, model context, visual explanation, and automation.
+            Feeling lost in model inventories, dashboard noise, and disconnected workflows? Jake builds evidence systems
+            that make data easier to trace, explain, validate, and act on.
           </p>
-        </div>
-        <div class="engine-orbit reveal" aria-label="Evidence engine diagram">
-          <div class="orbit-ring ring-one"></div>
-          <div class="orbit-ring ring-two"></div>
-          <div class="engine-core">
-            <span>JB</span>
-            <strong>Evidence Engine</strong>
+          <div class="hero-actions">
+            <a class="button primary magnetic" href="#cases">Explore cases</a>
+            <a class="button secondary magnetic" href="#contact">Talk to Jake</a>
           </div>
-          <button class="engine-node node-a" type="button" data-engine-node data-detail="Trace data lineage, inventory gaps, and approved source risk.">
-            Source
-          </button>
-          <button class="engine-node node-b" type="button" data-engine-node data-detail="Turn validation, rankings, prompts, and model behavior into reviewable artifacts.">
-            Model
-          </button>
-          <button class="engine-node node-c" type="button" data-engine-node data-detail="Shape Tableau, Power BI, and visual analytics into decision-ready narratives.">
-            Visual
-          </button>
-          <button class="engine-node node-d" type="button" data-engine-node data-detail="Automate reconciliation patterns and reduce repetitive ambiguity.">
-            Flow
-          </button>
-          <output class="engine-output" data-engine-output>Click a node to inspect the system.</output>
+        </div>
+        <div class="hero-stage reveal">
+          <img src="assets/jake-data-hero.png" alt="Analytics workstation with model lineage dashboards." />
+          <div class="hero-stat stat-one"><span>97%</span><small>sample reconciliation match</small></div>
+          <div class="hero-stat stat-two"><span>4.00</span><small>MS DSBA GPA</small></div>
+          <div class="hero-terminal">
+            <span>$ trace lineage --risk high</span>
+            <strong>evidence map generated</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="marquee" aria-label="Capabilities reel">
+        <div class="marquee-track">
+          <span>Data Lineage</span>
+          <span>Model Risk</span>
+          <span>Power BI</span>
+          <span>Tableau</span>
+          <span>SQL</span>
+          <span>Python</span>
+          <span>Prompt Evaluation</span>
+          <span>Workflow Automation</span>
+        </div>
+      </section>
+
+      <section class="section pain-section" id="manifesto">
+        <div class="section-lead reveal">
+          <span class="section-label">Manifesto</span>
+          <h2>Your delivery is smart. Your evidence layer may not be.</h2>
+        </div>
+        <div class="pain-grid">
+          <article class="pain-card reveal"><span>01</span><h3>Your data lineage depends on memory</h3><p>Critical source knowledge lives in scattered docs, chats, dashboards, and people's heads.</p></article>
+          <article class="pain-card reveal"><span>02</span><h3>Your model reviews feel like archaeology</h3><p>Validation evidence, prompt behavior, risk ranking, and documentation are hard to reconstruct later.</p></article>
+          <article class="pain-card reveal"><span>03</span><h3>Your dashboards are visible but not memorable</h3><p>Stakeholders can see charts, but the decision logic still needs translation.</p></article>
+          <article class="pain-card reveal"><span>04</span><h3>Your automation is not in sync</h3><p>Reconciliation, reporting, and review workflows drift when they are treated as separate chores.</p></article>
         </div>
       </section>
 
       <section class="section cases-section" id="cases">
         <div class="section-lead reveal">
-          <span class="section-label">Proof Cases</span>
-          <h2>Three projects, three kinds of signal.</h2>
+          <span class="section-label">Proven Signals</span>
+          <h2>Built from analytics, AI risk, and real operating work.</h2>
         </div>
-        <div class="case-stack">
-          <article class="case-card reveal">
-            <div class="case-media case-one"></div>
-            <div class="case-copy">
-              <span>AI tools / 2024-2025</span>
-              <h3>Multi-LLM Chatbot</h3>
-              <p>
-                A front-end application for comparing multiple LLMs through APIs and hosted Azure instances, supporting
-                prompt iteration and model workflow exploration.
-              </p>
-            </div>
-          </article>
-          <article class="case-card reveal">
-            <div class="case-media case-two"></div>
-            <div class="case-copy">
-              <span>Analytics / Charlotte</span>
-              <h3>Housing Area Study</h3>
-              <p>
-                Compared income-to-housing-price ratios across a 50-mile radius of Uptown Charlotte to surface
-                affordability patterns by area and demographic context.
-              </p>
-            </div>
-          </article>
-          <article class="case-card reveal">
-            <div class="case-media case-three"></div>
-            <div class="case-copy">
-              <span>Governance / enterprise</span>
-              <h3>Model Hub Concept</h3>
-              <p>
-                Designed a centralized concept for prompt engineering, hyperparameter tuning, training workflows, and
-                clearer validator handoffs.
-              </p>
-            </div>
-          </article>
+        <div class="stat-cases">
+          <a class="stat-card reveal magnetic" href="#proof"><span>High-risk</span><strong>ML lineage</strong><em>Explore case</em></a>
+          <a class="stat-card reveal magnetic" href="#proof"><span>Multi-LLM</span><strong>tooling</strong><em>Explore case</em></a>
+          <a class="stat-card reveal magnetic" href="#proof"><span>50-mile</span><strong>housing study</strong><em>Explore case</em></a>
         </div>
       </section>
 
-      <section class="section lab-section" id="lab">
-        <div class="lab-copy reveal">
-          <span class="section-label">Interactive Fit Lab</span>
-          <h2>Move the levers. Watch the portfolio reframe itself.</h2>
-          <p>
-            This replaces a static skills list with a small evaluator. Tune what matters, then see which kind of sprint
-            Jake is best positioned to support.
-          </p>
+      <section class="section services-section" id="services">
+        <div class="section-lead reveal">
+          <span class="section-label">Services</span>
+          <h2>Guiding your systems beyond dashboards using an Evidence Engine.</h2>
         </div>
-        <div class="lab-console reveal">
-          <div class="dial-row">
-            <label for="governance">Governance weight</label>
-            <input id="governance" type="range" min="0" max="100" value="82" data-lab-input />
+        <div class="service-list">
+          <article class="service-item reveal"><span>01</span><h3>Lineage & Source Strategy</h3><p>Clarify approved sources, inventory gaps, ownership, and the route from raw data to trusted metric.</p><a href="#engine">Discover solution</a></article>
+          <article class="service-item reveal"><span>02</span><h3>Model Review Enablement</h3><p>Structure validation evidence, prompt behavior, risk context, QA notes, and model governance artifacts.</p><a href="#engine">Discover solution</a></article>
+          <article class="service-item reveal"><span>03</span><h3>Decision Intelligence</h3><p>Build Tableau, Power BI, and analytical narratives that explain what changed and what to do next.</p><a href="#engine">Discover solution</a></article>
+        </div>
+      </section>
+
+      <section class="section engine-section" id="engine">
+        <div class="engine-copy reveal">
+          <span class="section-label">Evidence Engine</span>
+          <h2>A holistic system for trusted analytics.</h2>
+          <p>
+            The engine replaces isolated analytics tactics with a loop of Source, Model, Visual, and Flow. Click each
+            node to inspect how it turns uncertainty into reviewable evidence.
+          </p>
+          <a class="button secondary magnetic" href="#contact">Build your version</a>
+        </div>
+        <div class="engine-panel reveal">
+          <div class="engine-orbit">
+            <div class="orbit-ring ring-one"></div>
+            <div class="orbit-ring ring-two"></div>
+            <button class="engine-node node-source is-active" type="button" data-engine-node data-title="Source Intelligence" data-detail="Trace lineage, compare inventories, and identify approved-source risk before the dashboard becomes the debate.">Source</button>
+            <button class="engine-node node-model" type="button" data-engine-node data-title="Model Evidence" data-detail="Collect validation artifacts, risk rankings, prompt behavior, and QA notes in a format teams can defend later.">Model</button>
+            <button class="engine-node node-visual" type="button" data-engine-node data-title="Decision Visuals" data-detail="Turn analysis into dashboards and narratives that show what changed, why it matters, and what decision follows.">Visual</button>
+            <button class="engine-node node-flow" type="button" data-engine-node data-title="Workflow Flow" data-detail="Automate reconciliation and review loops so governance work is repeatable instead of heroic.">Flow</button>
+            <div class="engine-core"><span>JB</span><strong>Evidence Engine</strong></div>
           </div>
-          <div class="dial-row">
-            <label for="visualization">Visualization depth</label>
-            <input id="visualization" type="range" min="0" max="100" value="64" data-lab-input />
-          </div>
-          <div class="dial-row">
-            <label for="automation">Automation urgency</label>
-            <input id="automation" type="range" min="0" max="100" value="71" data-lab-input />
-          </div>
-          <output class="lab-output" data-lab-output>
-            <span>AI Governance Dashboard Sprint</span>
-            <small>Lineage, validation evidence, risk indicators, and stakeholder-ready reporting.</small>
+          <output class="engine-output" data-engine-output>
+            <strong>Source Intelligence</strong>
+            <span>Trace lineage, compare inventories, and identify approved-source risk before the dashboard becomes the debate.</span>
           </output>
         </div>
       </section>
 
-      <section class="section credibility-section">
-        <div class="quote-wall reveal">
-          <blockquote>
-            Behind every data point are real people, real processes, and decisions worth making clearer.
-          </blockquote>
+      <section class="section ownership-section">
+        <div class="ownership-copy reveal">
+          <span class="section-label">Ownership</span>
+          <h2>I treat your evidence layer like it is my own.</h2>
+          <p>You do not just need another dashboard. You need someone who can follow the thread from messy source to defensible decision.</p>
+          <div class="hero-actions">
+            <a class="button primary magnetic" href="#proof">Explore proof</a>
+            <a class="button secondary dark magnetic" href="#contact">Talk to Jake</a>
+          </div>
         </div>
-        <div class="credential-cards">
-          <article class="credential-card reveal">
-            <span>Current</span>
-            <h3>Data Management Analyst</h3>
-            <p>High-risk ML lineage, GenAI workflow documentation, reconciliation, and approved source strategy.</p>
+        <div class="portrait-proof reveal">
+          <img src="assets/jake-data-hero.png" alt="Data evidence workspace." />
+        </div>
+      </section>
+
+      <section class="section proof-section" id="proof">
+        <div class="section-lead reveal">
+          <span class="section-label">Proof Notes</span>
+          <h2>Signals from projects and experience.</h2>
+        </div>
+        <div class="quote-carousel reveal" data-carousel>
+          <article class="quote-card is-active"><span>Wells Fargo</span><blockquote>Documenting high-risk machine learning lineage and GenAI workflows for enterprise-wide consistency.</blockquote></article>
+          <article class="quote-card"><span>Model Risk</span><blockquote>Supported validators reviewing LLM, AI, and ML models, including risk rankings, evidence, agent research, and QA.</blockquote></article>
+          <article class="quote-card"><span>Personal Projects</span><blockquote>Built a multi-LLM chatbot and analyzed Charlotte housing affordability patterns through income-to-price comparison.</blockquote></article>
+        </div>
+      </section>
+
+      <section class="section comparison-section" id="comparison">
+        <div class="section-lead reveal">
+          <span class="section-label">System Audit</span>
+          <h2>Stop relying on isolated tactics.</h2>
+        </div>
+        <div class="comparison-grid">
+          <article class="comparison-card bad reveal">
+            <h3>Isolated analytics</h3>
+            <ul>
+              <li>Dashboards without source confidence</li>
+              <li>Model notes scattered across tools</li>
+              <li>Manual reconciliation every cycle</li>
+              <li>Stakeholders ask the same trust questions twice</li>
+            </ul>
           </article>
-          <article class="credential-card reveal">
-            <span>Recent</span>
-            <h3>Model Risk Management Extern</h3>
-            <p>LLM, AI, and ML validation support across rankings, evidence, agent research, and QA review.</p>
+          <article class="comparison-card good reveal">
+            <h3>Evidence Engine</h3>
+            <ul>
+              <li>Lineage connects to ownership and risk</li>
+              <li>Model evidence is structured for review</li>
+              <li>Reporting explains business consequences</li>
+              <li>Automation keeps the loop repeatable</li>
+            </ul>
           </article>
-          <article class="credential-card reveal">
-            <span>Education</span>
-            <h3>MS Data Science & Business Analytics</h3>
-            <p>UNC Charlotte, GPA 4.00, with machine learning, visual analytics, BI, and statistical modeling.</p>
-          </article>
+        </div>
+      </section>
+
+      <section class="section lab-section">
+        <div class="lab-copy reveal">
+          <span class="section-label">Fit Lab</span>
+          <h2>Find the right sprint shape.</h2>
+          <p>Move the sliders to recompose a first engagement around governance, visualization, and automation needs.</p>
+        </div>
+        <div class="lab-console reveal">
+          <label>Governance weight<input id="governance" type="range" min="0" max="100" value="82" data-lab-input /></label>
+          <label>Visualization depth<input id="visualization" type="range" min="0" max="100" value="64" data-lab-input /></label>
+          <label>Automation urgency<input id="automation" type="range" min="0" max="100" value="71" data-lab-input /></label>
+          <output class="lab-output" data-lab-output><strong>AI Governance Dashboard Sprint</strong><span>Lineage, validation evidence, risk indicators, and stakeholder-ready reporting.</span></output>
         </div>
       </section>
 
       <section class="section contact-section" id="contact">
         <div class="contact-copy reveal">
-          <span class="section-label">Contact</span>
-          <h2>Have a data system that needs proof, polish, or pressure testing?</h2>
+          <span class="section-label">Talk to an analyst, not a template.</span>
+          <h2>Ready to make your data system easier to trust?</h2>
         </div>
         <div class="contact-grid reveal">
-          <a class="magnetic" href="mailto:jakebrulato@gmail.com">
-            <span>Email</span>
-            <strong>jakebrulato@gmail.com</strong>
-          </a>
-          <a class="magnetic" href="tel:+17046570756">
-            <span>Phone</span>
-            <strong>704-657-0756</strong>
-          </a>
-          <a class="magnetic" href="https://www.linkedin.com/in/jake-brulato/">
-            <span>Network</span>
-            <strong>LinkedIn</strong>
-          </a>
-          <a class="magnetic" href="https://github.com/EviIius">
-            <span>Code</span>
-            <strong>GitHub</strong>
-          </a>
+          <a class="magnetic" href="mailto:jakebrulato@gmail.com"><span>Email</span><strong>jakebrulato@gmail.com</strong></a>
+          <a class="magnetic" href="tel:+17046570756"><span>Phone</span><strong>704-657-0756</strong></a>
+          <a class="magnetic" href="https://www.linkedin.com/in/jake-brulato/"><span>Network</span><strong>LinkedIn</strong></a>
+          <a class="magnetic" href="https://github.com/EviIius"><span>Code</span><strong>GitHub</strong></a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <span>Jake Brulato</span>
+      <button type="button" data-open-privacy>Cookies</button>
       <span>Data analytics, AI governance, and evidence systems.</span>
     </footer>
 
