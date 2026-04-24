@@ -1,41 +1,32 @@
-# Jake Brulato — Portfolio Website
+# Jake Brulato Portfolio
 
-A modern, interactive personal portfolio built with vanilla HTML, CSS, and JavaScript. No frameworks, no build tools — just clean, performant web code.
+A modern static portfolio for Jake Brulato, focused on data analytics, AI governance, model risk, business intelligence, and practical analytical systems.
 
-## Features
+## Highlights
 
-- **Particle Constellation** — Canvas-based particle system in the hero that reacts to mouse movement
-- **Interactive Terminal** — Types out commands with simulated output
-- **Command Palette** — Ctrl+K navigation (Linear/Vercel-style)
-- **Custom Cursor** — Dot + ring cursor with context-sensitive labels
-- **Magnetic Buttons** — Buttons that pull toward the cursor on hover
-- **Dark / Light Mode** — Toggle with localStorage persistence
-- **Bento Grid** — About section with 7-card grid layout
-- **3D Tilt Cards** — Project cards with perspective tilt and spotlight effect
-- **Text Scramble** — Section titles scramble/unscramble on reveal
-- **Cinematic Preloader** — Animated loading bar on first visit
-- **Scroll Progress Bar** — Top-of-page reading progress indicator
-- **Typing Effect** — Hero subtitle cycles through roles
-- **Parallax** — Orbs and grid layers move at different scroll depths
-- **Resume FAB** — Download button that appears after scrolling
+- Full-screen editorial hero with project-specific generated visual asset
+- Responsive navigation with mobile menu
+- Scroll progress indicator
+- Skill ticker for analytics tooling
+- Profile, systems, projects, experience, education, and contact sections
+- Interactive project impact reveal
+- No build step or framework required
 
 ## Tech Stack
 
-- HTML5, CSS3, Vanilla JavaScript
-- CSS custom properties for theming
-- Intersection Observer API for scroll animations
-- Canvas API for particle system
-- No dependencies, no build step
+- HTML5
+- CSS3
+- Vanilla JavaScript
 
 ## Structure
 
-```
-├── index.html       # Main markup (6 sections)
-├── styles.css       # All styles and animations
-├── script.js        # All interactivity and features
-└── Jake's Resume (Novo).pdf
+```text
+index.html
+styles.css
+script.js
+assets/
+  jake-data-hero.png
+Jake's Resume (Novo).pdf
 ```
 
-## Design Inspiration
-
-Linear, Vercel, Stripe
+Open `index.html` directly in a browser to view the site.
