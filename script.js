@@ -1,26 +1,50 @@
 const body = document.body;
+const boot = document.querySelector("[data-boot]");
 const header = document.querySelector("[data-header]");
 const progress = document.querySelector("[data-progress]");
 const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
-const loader = document.querySelector("[data-loader]");
-const spotlight = document.querySelector("[data-spotlight]");
+const cursorLight = document.querySelector("[data-cursor-light]");
+const rotator = document.querySelector("[data-rotator]");
 const marquee = document.querySelector(".marquee-track");
-const labInputs = document.querySelectorAll("[data-lab-input]");
-const labOutput = document.querySelector("[data-lab-output]");
-const engineNodes = document.querySelectorAll("[data-engine-node]");
-const engineOutput = document.querySelector("[data-engine-output]");
+const modeButtons = document.querySelectorAll("[data-mode]");
+const consoleOutput = document.querySelector("[data-console-output]");
+const revealItems = document.querySelectorAll(".reveal");
 const magneticItems = document.querySelectorAll(".magnetic");
-const privacy = document.querySelector("[data-privacy]");
-const settings = document.querySelector("[data-settings]");
-const carouselCards = document.querySelectorAll(".quote-card");
+const tiltItems = document.querySelectorAll("[data-tilt]");
+const skillButtons = document.querySelectorAll("[data-skill-filter]");
+const skillItems = document.querySelectorAll("[data-skill]");
+const countItems = document.querySelectorAll("[data-count]");
+const canvas = document.querySelector("#signalCanvas");
+const ctx = canvas.getContext("2d");
 
-const briefs = [
-  { test: ({ governance }) => governance >= 72, title: "AI Governance Dashboard Sprint", detail: "Lineage, validation evidence, risk indicators, and stakeholder-ready reporting." },
-  { test: ({ visualization }) => visualization >= 72, title: "Executive Analytics Storyboard", detail: "Dashboard structure, metric definitions, visual analytics, and decision-focused narration." },
-  { test: ({ automation }) => automation >= 72, title: "Reconciliation Automation Build", detail: "Inventory checks, source comparisons, exception routing, and repeatable review workflows." },
-  { test: () => true, title: "Decision Systems Audit", detail: "A focused pass across data quality, model context, reporting gaps, and business handoff risks." }
-];
+const rotatorWords = ["auditable.", "traceable.", "defensible.", "useful."];
+const consoleModes = {
+  governance: {
+    label: "governance.mode",
+    title: "High-risk ML lineage and GenAI workflows",
+    body: "Document source paths, model context, inventory gaps, and validation evidence for regulated review."
+  },
+  visuals: {
+    label: "visuals.mode",
+    title: "Dashboards that explain decisions",
+    body: "Shape Tableau, Power BI, and analytical narratives around what changed, why it matters, and what comes next."
+  },
+  automation: {
+    label: "automation.mode",
+    title: "Reconciliation loops that keep moving",
+    body: "Reduce recurring manual review work with repeatable source comparisons, exception flags, and workflow handoffs."
+  },
+  ai: {
+    label: "ai.mode",
+    title: "LLM tools with evaluation context",
+    body: "Prototype prompt workflows, compare model behavior, and keep evidence close to experimentation."
+  }
+};
+
+let pointer = { x: 0, y: 0, active: false };
+let particles = [];
+let rotatorIndex = 0;
 
 const syncChrome = () => {
   const top = window.scrollY;
@@ -35,39 +59,107 @@ const closeNav = () => {
   navToggle.setAttribute("aria-expanded", "false");
 };
 
-const hidePrivacy = (value) => {
-  localStorage.setItem("jb-privacy-choice", value);
-  privacy.classList.add("is-hidden");
+const setCanvasSize = () => {
+  const scale = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * scale;
+  canvas.height = window.innerHeight * scale;
+  canvas.style.width = `${window.innerWidth}px`;
+  canvas.style.height = `${window.innerHeight}px`;
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+
+  particles = Array.from({ length: Math.min(90, Math.floor(window.innerWidth / 16)) }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    vx: (Math.random() - 0.5) * 0.7,
+    vy: (Math.random() - 0.5) * 0.7,
+    size: Math.random() * 2 + 0.8,
+    hue: Math.random() > 0.5 ? "cyan" : "pink"
+  }));
 };
 
-const updateLab = () => {
-  const values = {
-    governance: Number(document.querySelector("#governance").value),
-    visualization: Number(document.querySelector("#visualization").value),
-    automation: Number(document.querySelector("#automation").value)
+const drawSignalField = () => {
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.fillStyle = "rgba(5, 5, 8, 0.25)";
+  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+  particles.forEach((particle, index) => {
+    particle.x += particle.vx;
+    particle.y += particle.vy;
+
+    if (pointer.active) {
+      const dx = particle.x - pointer.x;
+      const dy = particle.y - pointer.y;
+      const distance = Math.hypot(dx, dy);
+      if (distance < 180) {
+        particle.x += dx / distance;
+        particle.y += dy / distance;
+      }
+    }
+
+    if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
+    if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
+
+    ctx.beginPath();
+    ctx.fillStyle = particle.hue === "cyan" ? "#00e5ff" : "#ff3df2";
+    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    for (let next = index + 1; next < particles.length; next += 1) {
+      const other = particles[next];
+      const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
+      if (distance < 120) {
+        ctx.strokeStyle = `rgba(216, 255, 62, ${1 - distance / 120})`;
+        ctx.lineWidth = 0.6;
+        ctx.beginPath();
+        ctx.moveTo(particle.x, particle.y);
+        ctx.lineTo(other.x, other.y);
+        ctx.stroke();
+      }
+    }
+  });
+
+  requestAnimationFrame(drawSignalField);
+};
+
+const countUp = (item) => {
+  const target = Number(item.dataset.count);
+  const hasDecimal = item.dataset.count.includes(".");
+  const duration = 900;
+  const start = performance.now();
+
+  const tick = (now) => {
+    const progressValue = Math.min((now - start) / duration, 1);
+    const value = target * progressValue;
+    item.textContent = hasDecimal ? value.toFixed(2) : Math.round(value);
+    if (progressValue < 1) requestAnimationFrame(tick);
   };
-  const match = briefs.find((brief) => brief.test(values));
-  labOutput.innerHTML = `<strong>${match.title}</strong><span>${match.detail}</span>`;
+
+  requestAnimationFrame(tick);
 };
 
-body.classList.add("is-loading");
+body.classList.add("is-booting");
 syncChrome();
-updateLab();
-
-if (localStorage.getItem("jb-privacy-choice")) privacy.classList.add("is-hidden");
+setCanvasSize();
+drawSignalField();
 
 window.addEventListener("load", () => {
   setTimeout(() => {
-    loader.classList.add("is-hidden");
-    body.classList.remove("is-loading");
-  }, 450);
+    boot.classList.add("is-hidden");
+    body.classList.remove("is-booting");
+  }, 420);
 });
 
+window.addEventListener("resize", setCanvasSize);
 window.addEventListener("scroll", syncChrome, { passive: true });
 
 window.addEventListener("pointermove", (event) => {
-  spotlight.style.setProperty("--mx", `${event.clientX}px`);
-  spotlight.style.setProperty("--my", `${event.clientY}px`);
+  pointer = { x: event.clientX, y: event.clientY, active: true };
+  cursorLight.style.setProperty("--mx", `${event.clientX}px`);
+  cursorLight.style.setProperty("--my", `${event.clientY}px`);
+});
+
+window.addEventListener("pointerleave", () => {
+  pointer.active = false;
 });
 
 navToggle.addEventListener("click", () => {
@@ -82,13 +174,26 @@ nav.addEventListener("click", (event) => {
 
 if (marquee) marquee.innerHTML += marquee.innerHTML;
 
-labInputs.forEach((input) => input.addEventListener("input", updateLab));
+setInterval(() => {
+  rotatorIndex = (rotatorIndex + 1) % rotatorWords.length;
+  rotator.animate([{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(18px)" }], {
+    duration: 180,
+    easing: "ease"
+  }).onfinish = () => {
+    rotator.textContent = rotatorWords[rotatorIndex];
+    rotator.animate([{ opacity: 0, transform: "translateY(-18px)" }, { opacity: 1, transform: "translateY(0)" }], {
+      duration: 220,
+      easing: "ease"
+    });
+  };
+}, 1800);
 
-engineNodes.forEach((node) => {
-  node.addEventListener("click", () => {
-    engineNodes.forEach((item) => item.classList.remove("is-active"));
-    node.classList.add("is-active");
-    engineOutput.innerHTML = `<strong>${node.dataset.title}</strong><span>${node.dataset.detail}</span>`;
+modeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const mode = consoleModes[button.dataset.mode];
+    modeButtons.forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+    consoleOutput.innerHTML = `<span>${mode.label}</span><strong>${mode.title}</strong><p>${mode.body}</p>`;
   });
 });
 
@@ -104,7 +209,21 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.16 }
 );
 
-document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+revealItems.forEach((item) => revealObserver.observe(item));
+
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        countUp(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.6 }
+);
+
+countItems.forEach((item) => counterObserver.observe(item));
 
 magneticItems.forEach((item) => {
   item.addEventListener("pointermove", (event) => {
@@ -113,23 +232,32 @@ magneticItems.forEach((item) => {
     const y = event.clientY - rect.top - rect.height / 2;
     item.style.transform = `translate(${x * 0.14}px, ${y * 0.14}px)`;
   });
+
   item.addEventListener("pointerleave", () => {
     item.style.transform = "";
   });
 });
 
-let activeQuote = 0;
-setInterval(() => {
-  carouselCards[activeQuote]?.classList.remove("is-active");
-  activeQuote = (activeQuote + 1) % carouselCards.length;
-  carouselCards[activeQuote]?.classList.add("is-active");
-}, 4300);
+tiltItems.forEach((item) => {
+  item.addEventListener("pointermove", (event) => {
+    const rect = item.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    item.style.transform = `rotateX(${y * -7}deg) rotateY(${x * 7}deg) translateY(-4px)`;
+  });
 
-document.querySelector("[data-privacy-accept]").addEventListener("click", () => hidePrivacy("accepted"));
-document.querySelector("[data-privacy-reject]").addEventListener("click", () => hidePrivacy("rejected"));
-document.querySelector("[data-privacy-settings]").addEventListener("click", () => settings.showModal());
-document.querySelector("[data-open-privacy]").addEventListener("click", () => settings.showModal());
-document.querySelector("[data-settings-save]").addEventListener("click", () => {
-  hidePrivacy("custom");
-  settings.close();
+  item.addEventListener("pointerleave", () => {
+    item.style.transform = "";
+  });
+});
+
+skillButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const filter = button.dataset.skillFilter;
+    skillButtons.forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+    skillItems.forEach((item) => {
+      item.classList.toggle("is-dim", filter !== "all" && !item.dataset.skill.includes(filter));
+    });
+  });
 });
