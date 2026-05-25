@@ -1,659 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jake Brulato | Data Analyst</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <!-- ==================== SPLASH SCREEN ==================== -->
-    <div class="splash" id="splash">
-        <button class="splash-skip" id="splashSkip">SKIP &rarr;</button>
-        <div class="splash-content">
-            <div class="splash-logo" id="splashLogo">
-                <span class="splash-letter">J</span><span class="splash-letter">B</span>
-            </div>
-            <div class="splash-tagline" id="splashTagline">DATA ANALYST &bull; DATA SCIENTIST</div>
-            <div class="splash-bar">
-                <div class="splash-progress" id="splashProgress"></div>
-            </div>
-            <div class="splash-percent" id="splashPercent">0%</div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jake Brulato | Signal Deck</title>
+    <meta
+      name="description"
+      content="Jake Brulato builds data lineage, AI governance, model risk, BI, and automation systems that turn messy information into trusted signals."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="boot-screen" data-boot aria-hidden="true">
+      <span>Initializing signal deck</span>
+      <strong>JB</strong>
     </div>
 
-    <!-- ==================== NAVIGATION ==================== -->
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#hero" class="nav-logo">JB</a>
-            <div class="nav-links" id="navLinks">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#education" class="nav-link">Education</a>
-                <a href="#contact" class="nav-link nav-link--cta">Get in Touch</a>
-            </div>
-            <div class="nav-right">
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
+    <div class="cursor-light" data-cursor-light aria-hidden="true"></div>
+    <div class="scan-texture" aria-hidden="true"></div>
+    <div class="progress-bar" data-progress></div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-inner">
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#experience" class="mobile-link">Experience</a>
-            <a href="#skills" class="mobile-link">Skills</a>
-            <a href="#projects" class="mobile-link">Projects</a>
-            <a href="#education" class="mobile-link">Education</a>
-            <a href="#contact" class="mobile-link">Get in Touch</a>
-        </div>
-    </div>
+    <header class="site-header" data-header>
+      <a class="brand" href="#home" aria-label="Jake Brulato home">
+        <span class="brand-chip">JB</span>
+        <span>Signal Deck</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" data-nav>
+        <a href="#reactor">Reactor</a>
+        <a href="#systems">Systems</a>
+        <a href="#console">Console</a>
+        <a href="#cases">Cases</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#contact" class="nav-action">Contact</a>
+      </nav>
+    </header>
 
-    <!-- ==================== HERO SECTION ==================== -->
-    <section class="hero" id="hero">
-        <div class="hero-bg">
-            <div class="hero-grain"></div>
-            <div class="hero-glow hero-glow--1"></div>
-            <div class="hero-glow hero-glow--2"></div>
-        </div>
-        <div class="container hero-content">
-            <div class="hero-badge fade-up">
-                <span class="status-dot"></span>
-                Open to opportunities
-            </div>
-            <h1 class="hero-title fade-up">
-                <span class="hero-line">JAKE</span>
-                <span class="hero-line hero-line--accent">BRULATO</span>
+    <aside class="quickbar" aria-label="Quick actions">
+      <a href="Jake's Resume (Novo).pdf" aria-label="Download resume">CV</a>
+      <a href="mailto:jakebrulato@gmail.com" aria-label="Email Jake">@</a>
+      <a href="https://github.com/EviIius" aria-label="GitHub">GH</a>
+    </aside>
+
+    <main id="home">
+      <section class="hero">
+        <canvas id="signalCanvas" class="signal-canvas" aria-hidden="true"></canvas>
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Data analyst / AI governance / model risk</p>
+            <h1>
+              Make messy data
+              <span data-rotator>auditable.</span>
             </h1>
-            <p class="hero-subtitle fade-up">
-                Data Analyst &bull; Data Scientist &bull; ML Engineer
+            <p>
+              Jake Brulato builds signal systems for lineage, model evidence, dashboards, and automation. The work sits
+              where business questions, AI risk, and real data operations collide.
             </p>
-            <div class="hero-actions fade-up">
-                <a href="#contact" class="btn btn--primary">
-                    <span>Let's Talk</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <a href="#experience" class="btn btn--outline">
-                    <span>View My Work</span>
-                </a>
+            <div class="hero-actions">
+              <a class="button primary magnetic" href="#console">Open console</a>
+              <a class="button ghost magnetic" href="#cases">View case files</a>
             </div>
+          </div>
+
+          <div class="telemetry reveal" data-tilt>
+            <div class="telemetry-top">
+              <span>Live Profile</span>
+              <span class="pulse-dot"></span>
+            </div>
+            <div class="portrait-feed">
+              <img src="assets/jake-data-hero.png" alt="Analytics workstation with model lineage dashboards." />
+            </div>
+            <div class="metric-grid">
+              <div>
+                <strong data-count="4.00">0</strong>
+                <span>MS DSBA GPA</span>
+              </div>
+              <div>
+                <strong data-count="2025">0</strong>
+                <span>Data analyst since</span>
+              </div>
+              <div>
+                <strong data-count="12">0</strong>
+                <span>Core tools</span>
+              </div>
+            </div>
+            <div class="terminal-lines" aria-label="Profile terminal">
+              <span>$ validate model_context</span>
+              <span>$ trace source_inventory</span>
+              <span class="terminal-ok">status: evidence ready</span>
+            </div>
+          </div>
         </div>
-        <div class="hero-scroll fade-up">
-            <div class="scroll-indicator"><div class="scroll-dot"></div></div>
-            <span>Scroll to explore</span>
+      </section>
+
+      <section class="signal-marquee" aria-label="Core capabilities">
+        <div class="marquee-track">
+          <span>Python</span>
+          <span>SQL</span>
+          <span>Tableau</span>
+          <span>Power BI</span>
+          <span>Snowflake</span>
+          <span>Machine Learning</span>
+          <span>Model Risk</span>
+          <span>Data Lineage</span>
+          <span>Prompt Evaluation</span>
         </div>
-    </section>
+      </section>
 
-    <!-- ==================== NAME MARQUEE ==================== -->
-    <section class="marquee-section marquee-section--dark">
-        <div class="marquee-wrapper">
-            <div class="marquee-track marquee-track--fast">
-                <div class="marquee-content">
-                    <span class="marquee-item marquee-item--bold">JAKE BRULATO</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA ANALYST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA SCIENTIST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">ML ENGINEER</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--bold">JAKE BRULATO</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA ANALYST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA SCIENTIST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">ML ENGINEER</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item marquee-item--bold">JAKE BRULATO</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA ANALYST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA SCIENTIST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">ML ENGINEER</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--bold">JAKE BRULATO</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA ANALYST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">DATA SCIENTIST</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">ML ENGINEER</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-            </div>
+      <section class="section reactor-section" id="reactor">
+        <div class="reactor-copy reveal">
+          <span class="section-label">Signal Reactor</span>
+          <h2>Drop a messy signal into the machine.</h2>
+          <p>
+            This is the eye-catcher: a live reactor for Jake's work. Pick the input pressure and watch the system
+            recompose the evidence path around lineage, validation, visualization, or automation.
+          </p>
         </div>
-    </section>
-
-    <!-- ==================== ABOUT SECTION ==================== -->
-    <section class="section about" id="about">
-        <div class="container">
-            <div class="section-header fade-up">
-                <span class="section-tag">01 / ABOUT</span>
-                <h2 class="section-title">WHO I AM</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-text fade-up">
-                    <p class="about-lead">
-                        Numbers and statistics can often be dry and impersonal, but behind every data point
-                        there are real people and real experiences. My goal is to showcase the meaningful ones.
-                    </p>
-                    <p class="about-body">
-                        I'm a Data Analyst at Wells Fargo with a Master's in Data Science from UNC Charlotte.
-                        I love turning messy data into clear stories &#8212; whether that's building ML models,
-                        crafting dashboards, or architecting LLM-powered tools.
-                    </p>
-                </div>
-                <div class="about-details fade-up">
-                    <div class="about-detail">
-                        <span class="about-detail-label">Location</span>
-                        <span class="about-detail-value">Mooresville, NC</span>
-                    </div>
-                    <div class="about-detail">
-                        <span class="about-detail-label">Currently</span>
-                        <span class="about-detail-value">Data Management Analyst @ Wells Fargo</span>
-                    </div>
-                    <div class="about-detail">
-                        <span class="about-detail-label">Education</span>
-                        <span class="about-detail-value">M.S. Data Science, UNCC</span>
-                    </div>
-                    <div class="about-detail">
-                        <span class="about-detail-label">Building</span>
-                        <span class="about-detail-value">Multi-LLM Chatbot App</span>
-                    </div>
-                </div>
-            </div>
-            <div class="about-philosophy fade-up">
-                <div class="philosophy-card">
-                    <div class="philosophy-number">01</div>
-                    <h3 class="philosophy-title">Data tells a story</h3>
-                    <p class="philosophy-desc">Every dataset has a narrative &#8212; my job is to find it and make it resonate.</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-number">02</div>
-                    <h3 class="philosophy-title">Automate the tedious</h3>
-                    <p class="philosophy-desc">If I'm doing it twice, I'm writing a script to do it forever.</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-number">03</div>
-                    <h3 class="philosophy-title">Stay curious</h3>
-                    <p class="philosophy-desc">From LLMs to logistics &#8212; the best insights come from looking where others don't.</p>
-                </div>
-            </div>
-            <div class="about-interests fade-up">
-                <span class="interest-pill">Chess</span>
-                <span class="interest-pill">Architecture</span>
-                <span class="interest-pill">Coding</span>
-                <span class="interest-pill">Video Editing</span>
-                <span class="interest-pill">AI / ML</span>
-                <span class="interest-pill">Data Viz</span>
-            </div>
+        <div class="reactor-stage reveal" data-reactor-stage>
+          <div class="reactor-grid" aria-hidden="true"></div>
+          <div class="reactor-ring ring-a" aria-hidden="true"></div>
+          <div class="reactor-ring ring-b" aria-hidden="true"></div>
+          <div class="reactor-ring ring-c" aria-hidden="true"></div>
+          <div class="reactor-beam beam-a" aria-hidden="true"></div>
+          <div class="reactor-beam beam-b" aria-hidden="true"></div>
+          <button class="reactor-node node-lineage is-active" type="button" data-reactor-node data-title="Lineage Pulse" data-copy="Trace source paths, ownership, inventory gaps, and approved-source risk before trust breaks downstream.">
+            Lineage
+          </button>
+          <button class="reactor-node node-model" type="button" data-reactor-node data-title="Model Chamber" data-copy="Bind prompts, risk rankings, validation notes, and QA evidence into reviewable model context.">
+            Model
+          </button>
+          <button class="reactor-node node-visual" type="button" data-reactor-node data-title="Visual Relay" data-copy="Transform analysis into dashboards and narratives that show what changed and what action follows.">
+            Visual
+          </button>
+          <button class="reactor-node node-flow" type="button" data-reactor-node data-title="Flow Loop" data-copy="Reduce repeated manual work with reconciliation patterns, exception checks, and handoff-ready workflows.">
+            Flow
+          </button>
+          <div class="reactor-core">
+            <span>Active Mode</span>
+            <strong data-reactor-title>Lineage Pulse</strong>
+            <small data-reactor-copy>Trace source paths, ownership, inventory gaps, and approved-source risk before trust breaks downstream.</small>
+          </div>
+          <div class="reactor-readouts">
+            <div><span>Signal</span><strong data-reactor-meter>91%</strong></div>
+            <div><span>Noise</span><strong>12%</strong></div>
+            <div><span>Trace</span><strong>Live</strong></div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- ==================== EXPERIENCE SECTION ==================== -->
-    <section class="section experience section--dark" id="experience">
-        <div class="container">
-            <div class="section-header fade-up">
-                <span class="section-tag section-tag--light">02 / EXPERIENCE</span>
-                <h2 class="section-title section-title--light">WHERE I'VE WORKED</h2>
-            </div>
-            <div class="exp-grid">
-                <div class="exp-card fade-up">
-                    <div class="exp-card-accent"></div>
-                    <div class="exp-card-header">
-                        <span class="exp-date">Jun 2025 &#8212; Present</span>
-                        <span class="exp-badge">Current</span>
-                    </div>
-                    <h3 class="exp-role">Data Management Analyst</h3>
-                    <p class="exp-company">Wells Fargo &#8212; Charlotte, NC</p>
-                    <p class="exp-desc">
-                        Documenting high-risk ML lineage &amp; Generative AI workflows for enterprise-wide consistency.
-                        Building automated reconciliations across the enterprise inventory and establishing
-                        approved data source strategies by investigating applications across the org.
-                    </p>
-                    <div class="exp-tags">
-                        <span class="exp-tag">ML Governance</span>
-                        <span class="exp-tag">GenAI</span>
-                        <span class="exp-tag">Data Lineage</span>
-                        <span class="exp-tag">Automation</span>
-                    </div>
-                </div>
-
-                <div class="exp-card fade-up">
-                    <div class="exp-card-accent"></div>
-                    <div class="exp-card-header">
-                        <span class="exp-date">Oct 2024 &#8212; Jun 2025</span>
-                    </div>
-                    <h3 class="exp-role">Model Risk Management Extern</h3>
-                    <p class="exp-company">Wells Fargo &#8212; Decision Science &amp; AI</p>
-                    <p class="exp-desc">
-                        8-month externship supporting MRM DSAI validators in testing and approving LLM, AI, and ML models.
-                        Designed a centralized Model Hub for prompt engineering and hyperparameter tuning.
-                        Recreated autonomous agents using open-source LLMs and researched long-term memory architectures.
-                    </p>
-                    <div class="exp-tags">
-                        <span class="exp-tag">LLMs</span>
-                        <span class="exp-tag">Model Validation</span>
-                        <span class="exp-tag">Prompt Engineering</span>
-                        <span class="exp-tag">ReAct</span>
-                    </div>
-                </div>
-
-                <div class="exp-card fade-up">
-                    <div class="exp-card-accent"></div>
-                    <div class="exp-card-header">
-                        <span class="exp-date">Jan 2022 &#8212; Jan 2023</span>
-                    </div>
-                    <h3 class="exp-role">Freight Forwarder</h3>
-                    <p class="exp-company">ALG Worldwide Logistics &#8212; Charlotte, NC</p>
-                    <p class="exp-desc">
-                        Analyzed market trends in transportation to determine cost-effective solutions using R and Python.
-                        Built Tableau dashboards for supervisors. Queried shipment data with SQL across
-                        Ground, Expedited, Air, and Ocean &#8212; Domestic and International.
-                    </p>
-                    <div class="exp-tags">
-                        <span class="exp-tag">Tableau</span>
-                        <span class="exp-tag">SQL</span>
-                        <span class="exp-tag">R</span>
-                        <span class="exp-tag">Python</span>
-                    </div>
-                </div>
-            </div>
+      <section class="section systems-section" id="systems">
+        <div class="section-heading reveal">
+          <span class="section-label">Systems</span>
+          <h2>Problems Jake turns into operating signals.</h2>
         </div>
-    </section>
-
-    <!-- ==================== FRESHLY STOCKED MARQUEE ==================== -->
-    <section class="marquee-section marquee-section--accent">
-        <div class="marquee-wrapper">
-            <div class="marquee-track marquee-track--slow">
-                <div class="marquee-content">
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item marquee-item--lg">FRESHLY SKILLED</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-            </div>
+        <div class="system-grid">
+          <article class="system-card reveal" data-tilt>
+            <span>01</span>
+            <h3>Lineage Drift</h3>
+            <p>Source confidence, ownership, and approved data strategy get mapped before the metric becomes a debate.</p>
+          </article>
+          <article class="system-card reveal" data-tilt>
+            <span>02</span>
+            <h3>Model Evidence</h3>
+            <p>Risk ranking, validation artifacts, prompt behavior, and QA notes become easier to inspect later.</p>
+          </article>
+          <article class="system-card reveal" data-tilt>
+            <span>03</span>
+            <h3>Decision Visuals</h3>
+            <p>Dashboards and visual analytics are shaped around the next action, not just the next chart.</p>
+          </article>
+          <article class="system-card reveal" data-tilt>
+            <span>04</span>
+            <h3>Workflow Noise</h3>
+            <p>Reconciliation, review loops, and reporting checks become repeatable enough to survive handoff.</p>
+          </article>
         </div>
-    </section>
+      </section>
 
-    <!-- ==================== SKILLS SECTION ==================== -->
-    <section class="section skills" id="skills">
-        <div class="container">
-            <div class="section-header fade-up">
-                <span class="section-tag">03 / SKILLS</span>
-                <h2 class="section-title">MY TOOLKIT</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category fade-up">
-                    <div class="skill-category-header">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        <h3>Programming</h3>
-                    </div>
-                    <div class="skill-pills">
-                        <span class="skill-pill">Python</span>
-                        <span class="skill-pill">JavaScript</span>
-                        <span class="skill-pill">SQL</span>
-                        <span class="skill-pill">R</span>
-                        <span class="skill-pill">Java</span>
-                        <span class="skill-pill">HTML / CSS</span>
-                        <span class="skill-pill">OCaml</span>
-                        <span class="skill-pill">Swift</span>
-                    </div>
-                </div>
-                <div class="skill-category fade-up">
-                    <div class="skill-category-header">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        <h3>Data &amp; Analytics</h3>
-                    </div>
-                    <div class="skill-pills">
-                        <span class="skill-pill">Machine Learning</span>
-                        <span class="skill-pill">LLMs / GenAI</span>
-                        <span class="skill-pill">Neural Networks</span>
-                        <span class="skill-pill">Regression</span>
-                        <span class="skill-pill">Clustering</span>
-                        <span class="skill-pill">Econometrics</span>
-                        <span class="skill-pill">SAS</span>
-                        <span class="skill-pill">Snowflake</span>
-                    </div>
-                </div>
-                <div class="skill-category fade-up">
-                    <div class="skill-category-header">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                        <h3>Visualization</h3>
-                    </div>
-                    <div class="skill-pills">
-                        <span class="skill-pill">Tableau</span>
-                        <span class="skill-pill">Power BI</span>
-                        <span class="skill-pill">Streamlit</span>
-                        <span class="skill-pill">Microsoft Excel</span>
-                        <span class="skill-pill">PowerPoint</span>
-                    </div>
-                </div>
-                <div class="skill-category fade-up">
-                    <div class="skill-category-header">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                        <h3>Tools &amp; Platforms</h3>
-                    </div>
-                    <div class="skill-pills">
-                        <span class="skill-pill">Azure</span>
-                        <span class="skill-pill">AutoDesk CAD</span>
-                        <span class="skill-pill">Git / GitHub</span>
-                        <span class="skill-pill">R Studio</span>
-                        <span class="skill-pill">Jupyter</span>
-                    </div>
-                </div>
-            </div>
+      <section class="section console-section" id="console">
+        <div class="console-copy reveal">
+          <span class="section-label">Diagnostic Console</span>
+          <h2>Pick a signal path.</h2>
+          <p>
+            Each mode reframes Jake's work around a different operational pressure: governance, visualization,
+            automation, or AI model behavior.
+          </p>
         </div>
-    </section>
-
-    <!-- ==================== TECH MARQUEE ==================== -->
-    <section class="marquee-section">
-        <div class="marquee-wrapper">
-            <div class="marquee-track marquee-track--forward">
-                <div class="marquee-content">
-                    <span class="marquee-item">Python</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Tableau</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">JavaScript</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Machine Learning</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">SQL</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Power BI</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">R Studio</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Streamlit</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Snowflake</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Azure</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">SAS</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Java</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item">Python</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Tableau</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">JavaScript</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Machine Learning</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">SQL</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Power BI</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">R Studio</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Streamlit</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Snowflake</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Azure</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">SAS</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Java</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-            </div>
-            <div class="marquee-track marquee-track--reverse">
-                <div class="marquee-content">
-                    <span class="marquee-item">HTML / CSS</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">LLMs / GenAI</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Excel</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">OCaml</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Swift</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Git</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Neural Networks</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">AutoDesk CAD</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Econometrics</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">PowerPoint</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item">HTML / CSS</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">LLMs / GenAI</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Excel</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">OCaml</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Swift</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Git</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Neural Networks</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">AutoDesk CAD</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">Econometrics</span>
-                    <span class="marquee-dot">&bull;</span>
-                    <span class="marquee-item">PowerPoint</span>
-                    <span class="marquee-dot">&bull;</span>
-                </div>
-            </div>
+        <div class="console-panel reveal">
+          <div class="console-tabs" role="tablist" aria-label="Signal paths">
+            <button class="is-active" type="button" data-mode="governance">Governance</button>
+            <button type="button" data-mode="visuals">Visuals</button>
+            <button type="button" data-mode="automation">Automation</button>
+            <button type="button" data-mode="ai">AI Tools</button>
+          </div>
+          <div class="console-output" data-console-output>
+            <span>governance.mode</span>
+            <strong>High-risk ML lineage and GenAI workflows</strong>
+            <p>Document source paths, model context, inventory gaps, and validation evidence for regulated review.</p>
+          </div>
+          <div class="console-graph" aria-hidden="true">
+            <span style="--level: 84%"></span>
+            <span style="--level: 62%"></span>
+            <span style="--level: 91%"></span>
+            <span style="--level: 48%"></span>
+            <span style="--level: 76%"></span>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- ==================== PROJECTS SECTION ==================== -->
-    <section class="section projects section--dark" id="projects">
-        <div class="container">
-            <div class="section-header fade-up">
-                <span class="section-tag section-tag--light">04 / PROJECTS</span>
-                <h2 class="section-title section-title--light">FEATURED WORK</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/></svg>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="https://github.com/EviIius" target="_blank" class="project-view-btn">
-                                View Project
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="project-tag">R</span>
-                            <span class="project-tag">Data Analysis</span>
-                            <span class="project-tag">Visualization</span>
-                        </div>
-                        <h3 class="project-title">Charlotte Housing Case Study</h3>
-                        <p class="project-desc">
-                            A personal analysis of housing data within a 50-mile radius of Uptown Charlotte.
-                            Compared income-to-housing-price ratios across a wide demographic to establish
-                            an income versus prices study.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="https://github.com/EviIius" target="_blank" class="project-view-btn">
-                                View Project
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="project-tag">JavaScript</span>
-                            <span class="project-tag">LLMs</span>
-                            <span class="project-tag">Azure</span>
-                            <span class="project-tag">APIs</span>
-                        </div>
-                        <h3 class="project-title">Multi-LLM Chatbot</h3>
-                        <p class="project-desc">
-                            A front-end application supporting multiple different types of LLMs via APIs
-                            or hosted Azure instances. Designed for flexible model switching and
-                            rapid experimentation across providers.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <section class="section cases-section" id="cases">
+        <div class="section-heading reveal">
+          <span class="section-label">Case Files</span>
+          <h2>Three proof files, one analytical thread.</h2>
         </div>
-    </section>
-
-    <!-- ==================== EDUCATION SECTION ==================== -->
-    <section class="section education" id="education">
-        <div class="container">
-            <div class="section-header fade-up">
-                <span class="section-tag">05 / EDUCATION</span>
-                <h2 class="section-title">ACADEMIC BACKGROUND</h2>
-            </div>
-            <div class="edu-grid">
-                <div class="edu-card fade-up">
-                    <div class="edu-accent"></div>
-                    <div class="edu-content">
-                        <span class="edu-date">Jun 2023 &#8212; May 2025</span>
-                        <h3 class="edu-degree">M.S. Data Science &amp; Business Analytics</h3>
-                        <p class="edu-school">University of North Carolina at Charlotte</p>
-                        <div class="edu-gpa">GPA: <strong>4.00</strong></div>
-                        <p class="edu-details">Coursework in Machine Learning, Strategic Business Analytics, Visual Analytics, and Business Intelligence. Built LLMs, neural networks, and interactive dashboards.</p>
-                    </div>
-                </div>
-                <div class="edu-card fade-up">
-                    <div class="edu-accent"></div>
-                    <div class="edu-content">
-                        <span class="edu-date">Aug 2019 &#8212; Jun 2023</span>
-                        <h3 class="edu-degree">B.S. Business Administration, Business Analytics</h3>
-                        <p class="edu-school">University of North Carolina at Charlotte</p>
-                        <div class="edu-gpa">GPA: <strong>3.74</strong></div>
-                        <p class="edu-details">Chancellor's List / Dean's List every semester. Coursework in Econometrics, Data Management, and Predictive Analytics using R, SQL, and Python.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="case-grid">
+          <article class="case-card reveal" data-tilt>
+            <div class="case-code">AI-01</div>
+            <h3>Multi-LLM Chatbot</h3>
+            <p>Front-end application for comparing multiple LLMs through APIs and hosted Azure instances.</p>
+            <div class="case-tags"><span>Prompting</span><span>Azure</span><span>Evaluation</span></div>
+          </article>
+          <article class="case-card reveal featured" data-tilt>
+            <div class="case-code">MR-02</div>
+            <h3>Model Hub Concept</h3>
+            <p>Centralized model workflow concept for prompt engineering, training workflows, risk review, and validator handoffs.</p>
+            <div class="case-tags"><span>Governance</span><span>Workflow</span><span>Risk</span></div>
+          </article>
+          <article class="case-card reveal" data-tilt>
+            <div class="case-code">CLT-03</div>
+            <h3>Charlotte Housing Study</h3>
+            <p>Income-to-housing-price analysis across a 50-mile radius of Uptown Charlotte.</p>
+            <div class="case-tags"><span>Analytics</span><span>R</span><span>Visualization</span></div>
+          </article>
         </div>
-    </section>
+      </section>
 
-    <!-- ==================== CONTACT SECTION ==================== -->
-    <section class="section contact section--dark" id="contact">
-        <div class="container">
-            <div class="section-header fade-up">
-                <span class="section-tag section-tag--light">06 / CONTACT</span>
-                <h2 class="section-title section-title--light">LET'S BUILD<br>SOMETHING GREAT</h2>
-            </div>
-            <p class="contact-text fade-up">
-                I'm always excited to connect with fellow professionals, discuss new opportunities,
-                or collaborate on interesting projects. Don't hesitate to reach out!
-            </p>
-            <div class="contact-grid fade-up">
-                <a href="mailto:jakebrulato@gmail.com" class="contact-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    <div>
-                        <span class="contact-label">Email</span>
-                        <span class="contact-value">jakebrulato@gmail.com</span>
-                    </div>
-                </a>
-                <a href="https://www.linkedin.com/in/jake-brulato/" target="_blank" class="contact-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    <div>
-                        <span class="contact-label">LinkedIn</span>
-                        <span class="contact-value">linkedin.com/in/jake-brulato</span>
-                    </div>
-                </a>
-                <a href="https://github.com/EviIius" target="_blank" class="contact-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    <div>
-                        <span class="contact-label">GitHub</span>
-                        <span class="contact-value">github.com/EviIius</span>
-                    </div>
-                </a>
-                <a href="tel:+17046570756" class="contact-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <div>
-                        <span class="contact-label">Phone</span>
-                        <span class="contact-value">(704) 657-0756</span>
-                    </div>
-                </a>
-            </div>
-            <div class="contact-cta fade-up">
-                <a href="mailto:jakebrulato@gmail.com" class="btn btn--primary btn--large">
-                    <span>Send Me a Message</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
+      <section class="section pipeline-section" id="pipeline">
+        <div class="section-heading reveal">
+          <span class="section-label">Pipeline</span>
+          <h2>Experience mapped as a signal flow.</h2>
         </div>
-    </section>
+        <div class="pipeline">
+          <article class="pipeline-step reveal">
+            <time>2022</time>
+            <h3>Logistics Analysis</h3>
+            <p>Cost-effective shipping decisions with Tableau, SQL, R, Python, and market trend analysis.</p>
+          </article>
+          <article class="pipeline-step reveal">
+            <time>2024</time>
+            <h3>Model Risk Extern</h3>
+            <p>LLM, AI, and ML validation support, autonomous agent research, memory architecture, and QA review.</p>
+          </article>
+          <article class="pipeline-step reveal">
+            <time>2025</time>
+            <h3>MS DSBA</h3>
+            <p>Machine learning, strategic analytics, visual analytics, BI, and statistical modeling at UNC Charlotte.</p>
+          </article>
+          <article class="pipeline-step reveal">
+            <time>Now</time>
+            <h3>Data Management Analyst</h3>
+            <p>High-risk ML lineage, GenAI workflow documentation, reconciliation, and approved source strategy.</p>
+          </article>
+        </div>
+      </section>
 
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-left">
-                <span class="footer-logo">JB</span>
-                <p class="footer-copy">&copy; 2026 Jake Brulato. All rights reserved.</p>
-            </div>
-            <div class="footer-links">
-                <a href="https://github.com/EviIius" target="_blank" class="footer-link" aria-label="GitHub">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/jake-brulato/" target="_blank" class="footer-link" aria-label="LinkedIn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-                <a href="mailto:jakebrulato@gmail.com" class="footer-link" aria-label="Email">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </a>
-            </div>
+      <section class="section skills-section">
+        <div class="skills-copy reveal">
+          <span class="section-label">Skill Matrix</span>
+          <h2>A toolkit with range.</h2>
         </div>
+        <div class="skill-lab reveal">
+          <div class="skill-tabs" aria-label="Skill categories">
+            <button class="is-active" type="button" data-skill-filter="all">All</button>
+            <button type="button" data-skill-filter="data">Data</button>
+            <button type="button" data-skill-filter="viz">Visual</button>
+            <button type="button" data-skill-filter="code">Code</button>
+          </div>
+          <div class="skill-cloud">
+            <span data-skill="code data">Python</span>
+            <span data-skill="data">SQL</span>
+            <span data-skill="viz data">Tableau</span>
+            <span data-skill="viz data">Power BI</span>
+            <span data-skill="code data">R Studio</span>
+            <span data-skill="data">Snowflake</span>
+            <span data-skill="code">JavaScript</span>
+            <span data-skill="code">HTML/CSS</span>
+            <span data-skill="data">SAS</span>
+            <span data-skill="viz">Excel</span>
+            <span data-skill="code data">Streamlit</span>
+            <span data-skill="data">Machine Learning</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="contact-copy reveal">
+          <span class="section-label">Contact</span>
+          <h2>Send the messy problem. Jake will find the signal.</h2>
+        </div>
+        <div class="contact-grid reveal">
+          <a class="magnetic" href="mailto:jakebrulato@gmail.com"><span>Email</span><strong>jakebrulato@gmail.com</strong></a>
+          <a class="magnetic" href="tel:+17046570756"><span>Phone</span><strong>704-657-0756</strong></a>
+          <a class="magnetic" href="https://www.linkedin.com/in/jake-brulato/"><span>Network</span><strong>LinkedIn</strong></a>
+          <a class="magnetic" href="https://github.com/EviIius"><span>Code</span><strong>GitHub</strong></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Jake Brulato</span>
+      <span>Signal systems for data, AI governance, and analytics.</span>
     </footer>
 
-    <!-- Download Resume FAB -->
-    <a href="Jake's Resume (Novo).pdf" download class="resume-fab" id="resumeFab" title="Download Resume">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span class="resume-fab-label">Resume</span>
-    </a>
-
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

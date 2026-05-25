@@ -1,41 +1,41 @@
-# Jake Brulato — Portfolio Website
+# Jake Brulato Signal Deck
 
-A modern, interactive personal portfolio built with vanilla HTML, CSS, and JavaScript. No frameworks, no build tools — just clean, performant web code.
+A modern static portfolio for Jake Brulato, focused on data analytics, AI governance, model risk, business intelligence, and practical analytical systems. The current direction is a ground-up neon "Signal Deck" with canvas motion, interactive diagnostics, and a completely new visual system.
 
-## Features
+## Highlights
 
-- **Particle Constellation** — Canvas-based particle system in the hero that reacts to mouse movement
-- **Interactive Terminal** — Types out commands with simulated output
-- **Command Palette** — Ctrl+K navigation (Linear/Vercel-style)
-- **Custom Cursor** — Dot + ring cursor with context-sensitive labels
-- **Magnetic Buttons** — Buttons that pull toward the cursor on hover
-- **Dark / Light Mode** — Toggle with localStorage persistence
-- **Bento Grid** — About section with 7-card grid layout
-- **3D Tilt Cards** — Project cards with perspective tilt and spotlight effect
-- **Text Scramble** — Section titles scramble/unscramble on reveal
-- **Cinematic Preloader** — Animated loading bar on first visit
-- **Scroll Progress Bar** — Top-of-page reading progress indicator
-- **Typing Effect** — Hero subtitle cycles through roles
-- **Parallax** — Orbs and grid layers move at different scroll depths
-- **Resume FAB** — Download button that appears after scrolling
+- Animated canvas signal field that reacts to pointer movement
+- Interactive Signal Reactor with rotating rings, scanning beams, and spark bursts
+- Neon black, cyan, pink, lime, and gold color system
+- Boot-screen intro animation
+- Rotating hero keyword
+- Live telemetry card with count-up metrics
+- Responsive navigation with mobile menu
+- Floating quick-action dock for resume, email, and GitHub
+- Scroll progress indicator
+- Moving capability marquee
+- Tilt-reactive system and case cards
+- Click-driven diagnostic console
+- Experience pipeline
+- Interactive skill matrix filters
+- Scroll reveals and magnetic hover interactions
+- No build step or framework required
 
 ## Tech Stack
 
-- HTML5, CSS3, Vanilla JavaScript
-- CSS custom properties for theming
-- Intersection Observer API for scroll animations
-- Canvas API for particle system
-- No dependencies, no build step
+- HTML5
+- CSS3
+- Vanilla JavaScript
 
 ## Structure
 
-```
-├── index.html       # Main markup (6 sections)
-├── styles.css       # All styles and animations
-├── script.js        # All interactivity and features
-└── Jake's Resume (Novo).pdf
+```text
+index.html
+styles.css
+script.js
+assets/
+  jake-data-hero.png
+Jake's Resume (Novo).pdf
 ```
 
-## Design Inspiration
-
-Linear, Vercel, Stripe
+Open `index.html` directly in a browser to view the site.
